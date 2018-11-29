@@ -42,8 +42,6 @@ export class InformacionEmpresaComponent implements OnInit {
   }
 
   updateCompany(): void {
-    console.log('avatar');
-    console.log(this.company.avatar);
     this.empresaService.updateCompany({'company': this.company}, this.userLogged.api_token).subscribe(
       response => {
         this.getCompany();

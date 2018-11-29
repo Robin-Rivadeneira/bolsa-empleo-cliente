@@ -100,6 +100,15 @@
                   </div>
                 </div>
               </div>
+              <!--Correo Electronico-->
+              <div class="form-group">
+                <label for="correoElectronico">
+                  <b class="text-danger">*</b> Correo Electrónico:
+                </label>
+                <input type="email" [(ngModel)]="company.email"
+                       class="form-control text-lowercase"
+                       id="correoElectronico" name="correoElectronico" placeholder="Ej. contacto@gmail.com" required>
+              </div>
               <!--Direccion-->
               <div class="form-group">
                 <label for="direccion">

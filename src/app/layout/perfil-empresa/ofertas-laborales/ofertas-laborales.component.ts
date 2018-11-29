@@ -167,6 +167,15 @@ export class OfertasLaboralesComponent implements OnInit {
       response => {
         this.offers = response['offers']['data'];
         this.total_pages = response['pagination']['last_page'];
+        if (response['pagination']['total'] === 0) {
+          swal({
+            position: 'center',
+            type: 'info',
+            title: 'Oops! no existen registros',
+            text: 'Vuelve más tarde',
+            showConfirmButton: true
+          });
+        }
       },
       error => {
         if (error.status === 401) {

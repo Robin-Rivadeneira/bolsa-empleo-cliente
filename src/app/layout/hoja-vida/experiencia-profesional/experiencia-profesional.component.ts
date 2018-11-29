@@ -87,7 +87,9 @@ export class ExperienciaProfesionalComponent implements OnInit {
   }
 
   getProfessionalExperiences(): void {
-    this.postulanteService.getProfessionalExperiences(this.actual_page, this.records_per_page, this.userLogged.id, this.userLogged.api_token)
+    this.postulanteService.getProfessionalExperiences(
+      this.actual_page, this.records_per_page,
+      this.userLogged.id, this.userLogged.api_token)
       .subscribe(
         response => {
           console.log('Courses');
@@ -152,7 +154,9 @@ export class ExperienciaProfesionalComponent implements OnInit {
   }
 
   updateProfessionalExperience(): void {
-    this.postulanteService.updateProfessionalExperience({'professionalExperience': this.selectedProfessionalExperience}, this.userLogged.api_token)
+    this.postulanteService.updateProfessionalExperience(
+      {'professionalExperience': this.selectedProfessionalExperience},
+      this.userLogged.api_token)
       .subscribe(
         response => {
           this.getProfessionalExperiences();

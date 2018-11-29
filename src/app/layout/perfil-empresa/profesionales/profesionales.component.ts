@@ -38,11 +38,63 @@ export class ProfesionalesComponent implements OnInit {
     this.getProfessionals();
   }
 
+  detachPostulant(selectedPostulant: Professional): void {
+    this.empresaService.detachPostulant(
+      {'user': this.userLogged, 'postulant': selectedPostulant}, this.userLogged.api_token)
+      .subscribe(
+        response => {
+          if (response) {
+            swal({
+              position: this.messages['createSuccess']['position'],
+              type: this.messages['createSuccess']['type'],
+              // title: this.messages['createSuccess']['title'],
+              title: response.valueOf().toString(),
+              text: this.messages['createSuccess']['text'],
+              timer: this.messages['createSuccess']['timer'],
+              showConfirmButton: this.messages['createSuccess']['showConfirmButton'],
+              backdrop: this.messages['createSuccess']['backdrop']
+            });
+          }
+        },
+        error => {
+          if (error.status === 401) {
+            swal({
+              position: this.messages['createError401']['position'],
+              type: this.messages['createError401']['type'],
+              title: this.messages['createError401']['title'],
+              text: this.messages['createError401']['text'],
+              showConfirmButton: this.messages['createError401']['showConfirmButton'],
+              backdrop: this.messages['createError401']['backdrop']
+            });
+          }
+
+          if (error.status === 500) {
+            swal({
+              position: this.messages['createError500']['position'],
+              type: this.messages['createError500']['type'],
+              title: this.messages['createError500']['title'],
+              text: this.messages['createError500']['text'],
+              showConfirmButton: this.messages['createError500']['showConfirmButton'],
+              backdrop: this.messages['createError500']['backdrop']
+            });
+          }
+        });
+  }
+
   getProfessionals() {
     this.empresaService.getAppliedProfessionals(this.actual_page, this.records_per_page, this.userLogged.id, this.userLogged.api_token)
       .subscribe(
         response => {
           this.professionals = response['professionals']['data'];
+          if (response['pagination']['total'] === 0) {
+            swal({
+              position: 'center',
+              type: 'info',
+              title: 'Oops! no existen registros',
+              text: 'Vuelve más tarde',
+              showConfirmButton: true
+            });
+          }
         },
         error => {
           if (error.status === 401) {

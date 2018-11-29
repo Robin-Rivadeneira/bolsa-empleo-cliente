@@ -48,7 +48,7 @@ export class FiltroComponent implements OnInit {
     this.areas = catalogos.titulos;
     this.filters = new Array<String>();
     this.actual_page = 1;
-    this.records_per_page = 1;
+    this.records_per_page = 20;
     this.total_pages = 1;
     this.messages = catalogos.messages;
     if (sessionStorage.getItem('user_logged')) {

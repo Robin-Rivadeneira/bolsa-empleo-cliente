@@ -80,6 +80,21 @@
 <ng-template #modalOfertaLaboral let-c="close" let-d="dismiss">
   <form name="empresaform" method="post" #formCtrl="ngForm">
     <div class="modal-header">
+      <button type="submit" class="btn btn-success btn-lg m-1" title="Aceptar" (click)="c('save')"
+              [disabled]="formCtrl.form.invalid">
+        <i class="{{messages['saveConfirmationDialog']['iconOk']}} " aria-hidden="true">
+          Publicar
+        </i>
+      </button>
+      <button class="btn btn-danger btn-lg m-1" title="Cancelar" (click)="c()">
+        <i class="{{messages['saveConfirmationDialog']['iconCancel']}}" aria-hidden="true">
+          {{messages['saveConfirmationDialog']['cancel']}}
+        </i>
+      </button>
+      <h6 class="text-muted">
+        <b class="text-danger">{{messages['requiredFields']['icon']}} </b>
+        {{messages['requiredFields']['text']}}
+      </h6>
       <button type="button" class="close" aria-label="Close" (click)="d('ClickEnX')">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -366,7 +381,7 @@
       <button type="submit" class="btn btn-success btn-lg" title="Aceptar" (click)="c('save')"
               [disabled]="formCtrl.form.invalid">
         <i class="{{messages['saveConfirmationDialog']['iconOk']}} " aria-hidden="true">
-          {{messages['saveConfirmationDialog']['ok']}}
+          Publicar
         </i>
       </button>
       <button class="btn btn-danger btn-lg" title="Cancelar" (click)="c()">

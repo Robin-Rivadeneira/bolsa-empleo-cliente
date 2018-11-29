@@ -1,5 +1,6 @@
 <div class="row mt-2">
   <div class="col-12">
+    <div *ngIf="total_pages==0">No existen registros</div>
     <div class="card m-2" *ngFor="let professional of professionals">
       <div *ngIf="professional != null" class="card-body">
         <div class="card-title">
@@ -29,7 +30,11 @@
                       <h6 class="text-muted" style="overflow: auto;height: 80px">
                         {{professional.about_me}}
                       </h6>
-                      <button class="btn btn-primary btn-sm pull-right"
+                      <button class="btn btn-warning btn-sm pull-right text-white m-1"
+                              (click)="detachPostulant(professional)">
+                        <span class="fa fa-power-off"></span>&nbsp;Quitar
+                      </button>
+                      <button class="btn btn-primary btn-sm pull-right m-1"
                               (click)="openProfessional(modalProfessional,professional,true)">
                         <span class="fa fa-info-circle"></span>&nbsp;Más Información
                       </button>

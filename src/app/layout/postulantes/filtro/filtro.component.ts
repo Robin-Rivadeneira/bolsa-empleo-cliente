@@ -128,7 +128,7 @@ export class FiltroComponent implements OnInit {
       .result
       .then((resultAceptar => {
         if (resultAceptar === 'aplicar') {
-          this.applyOffer();
+          this.applyPostulant();
         }
 
       }), (resultCancel => {
@@ -510,8 +510,8 @@ export class FiltroComponent implements OnInit {
     });
   }
 
-  applyOffer(): void {
-    this.postulanteService.applyPostulant(
+  applyPostulant(): void {
+    this.empresaService.applyPostulant(
       {'user': this.userLogged, 'postulant': this.selectedPostulant}, this.userLogged.api_token)
       .subscribe(
         response => {

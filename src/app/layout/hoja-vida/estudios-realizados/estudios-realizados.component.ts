@@ -88,8 +88,6 @@ export class EstudiosRealizadosComponent implements OnInit {
     this.postulanteService.getAcademicFormations(this.actual_page, this.records_per_page, this.userLogged.id, this.userLogged.api_token)
       .subscribe(
         response => {
-          console.log('academicFormations');
-          console.log(response['academicFormations']);
           this.academicFormations = response['academicFormations']['data'];
           this.total_pages = response['pagination']['last_page'];
           this.flagPagination = false;

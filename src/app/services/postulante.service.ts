@@ -16,11 +16,6 @@ export class PostulanteService {
   ) {
   }
 
-  applyPostulant(data: any, api_token: string) {
-    const url = environment.apiUrl + 'postulants/apply';
-    this.headers = new HttpHeaders().set('Api-Token', api_token);
-    return this._http.post(url, JSON.stringify(data), {headers: this.headers});
-  }
 
   validateAppliedPostulant(userId: number, professionalId: number) {
     const url = environment.apiUrl + 'postulants/validateAppliedPostulant?user_id=' + userId + '&professional_id=' + professionalId;

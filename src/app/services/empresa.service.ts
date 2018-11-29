@@ -13,6 +13,18 @@ export class EmpresaService {
   constructor(public _http: HttpClient) {
   }
 
+  applyPostulant(data: any, api_token: string) {
+    const url = environment.apiUrl + 'postulants/apply';
+    this.headers = new HttpHeaders().set('Api-Token', api_token);
+    return this._http.post(url, JSON.stringify(data), {headers: this.headers});
+  }
+
+  detachPostulant(data: any, api_token: string) {
+    const url = environment.apiUrl + 'postulants/detach';
+    this.headers = new HttpHeaders().set('Api-Token', api_token);
+    return this._http.post(url, JSON.stringify(data), {headers: this.headers});
+  }
+
   getTotalCompanies() {
     const url = environment.apiUrl + 'totalCompanies';
     return this._http.get(url);
