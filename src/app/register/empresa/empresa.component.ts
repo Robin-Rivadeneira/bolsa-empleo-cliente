@@ -19,7 +19,7 @@ export class EmpresaComponent implements OnInit {
   company: Company;
   user: User;
   password: string;
-  password_confirmation: string;
+  passwordConfirmation: string;
   correoValido: boolean;
   claveValida: boolean;
   claveConfirmacionValida: boolean;
@@ -40,14 +40,14 @@ export class EmpresaComponent implements OnInit {
   }
 
   validarClave(): boolean {
-    if (this.password_confirmation == null || this.password_confirmation.length === 0) {
+    if (this.passwordConfirmation == null || this.passwordConfirmation.length === 0) {
       if (this.password.length < 6) {
         this.claveValida = false;
       } else {
         this.claveValida = true;
       }
     } else {
-      if (this.password === this.password_confirmation && this.password.length >= 6) {
+      if (this.password === this.passwordConfirmation && this.password.length >= 6) {
         this.claveValida = true;
         this.claveConfirmacionValida = true;
       } else {
@@ -62,13 +62,13 @@ export class EmpresaComponent implements OnInit {
   validarClaveConfirmacion(): boolean {
     console.log(this.password);
     if (this.password == null || this.password.length === 0) {
-      if (this.password_confirmation.length < 6) {
+      if (this.passwordConfirmation.length < 6) {
         this.claveConfirmacionValida = false;
       } else {
         this.claveConfirmacionValida = true;
       }
     } else {
-      if (this.password === this.password_confirmation && this.password.length >= 6) {
+      if (this.password === this.passwordConfirmation && this.password.length >= 6) {
         this.claveValida = true;
         this.claveConfirmacionValida = true;
       } else {
@@ -105,7 +105,7 @@ export class EmpresaComponent implements OnInit {
 
   validarFormulario(dataUser: User): string {
     let errores = '';
-    if (this.password.length < 6 || this.password_confirmation.length < 6) {
+    if (this.password.length < 6 || this.passwordConfirmation.length < 6) {
       errores += 'La contraseña debe tener al menos 6 caracteres';
     }
 
@@ -115,7 +115,7 @@ export class EmpresaComponent implements OnInit {
       }
       errores += 'Correo electrónico no válido';
     }
-    if (this.password_confirmation !== this.password) {
+    if (this.passwordConfirmation !== this.password) {
       if (errores.length > 0) {
         errores += ' - ';
       }
@@ -138,7 +138,6 @@ export class EmpresaComponent implements OnInit {
       console.log(this.company.web_page.length);
       if (this.company.web_page.length !== 0) {
         this.company.web_page = this.company.web_page.toLowerCase();
-        this.company.web_page = 'www.' + this.company.web_page;
       }
       this.company.address = this.company.address.toUpperCase();
       this.user.name = this.company.trade_name;
@@ -168,6 +167,14 @@ export class EmpresaComponent implements OnInit {
               type: 'error',
               title: 'El usuario ya se encuentra registrado',
               text: 'Verifique la identificación y/o correo electrónico',
+              showConfirmButton: true
+            });
+          } else {
+            swal({
+              position: 'center',
+              type: 'error',
+              title: 'Problemas con el servidor',
+              text: 'Vuelve a intentar',
               showConfirmButton: true
             });
           }

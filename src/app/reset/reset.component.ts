@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { routerTransition } from '../router.animations';
-import { AuthService } from '../services/auth.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {routerTransition} from '../router.animations';
+import {AuthService} from '../services/auth.service';
 import swal from 'sweetalert2';
+import {ProfessionalService} from '../services/professional.service';
 
 @Component({
   selector: 'app-reset',
@@ -10,49 +11,53 @@ import swal from 'sweetalert2';
   styleUrls: ['./reset.component.css']
 })
 export class ResetComponent implements OnInit {
-  correoElectronico: string;
+  userName: string;
+  validUser: boolean;
+  email: string;
 
-  constructor(public authService: AuthService, private _router: Router) {}
+  constructor(private postulanteService: ProfessionalService, private _router: Router) {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.validUser = false;
+  }
+
+  validateUser() {
+    if (this.userName) {
+      this.postulanteService.validateUserName(this.userName)
+        .subscribe(
+          response => {
+            if (response['email']) {
+              this.validUser = true;
+              this.email = response['email'].toString().substring(0, 4);
+              this.email += '******';
+              this.email += response['email'].toString()
+                .substring(response['email'].toString().indexOf('@'), response['email'].toString().length);
+            } else {
+              this.validUser = false;
+              this.email = null;
+              swal({
+                  position: 'center',
+                  type: 'warning',
+                  title: 'Este usuario no se encuentra registrado',
+                  text: 'Vuelve a intentar',
+                  showConfirmButton: true,
+                  timer: 3000
+                }
+              );
+            }
+          },
+          error => {
+
+          });
+    }
+  }
 
   reiniciar() {
-    if (!this.correoElectronico) {
-      swal({
-        position: 'center',
-        type: 'warning',
-        title: 'Validación',
-        text: 'El correo es obligatorio',
-        showConfirmButton: false,
-        timer: 2000
-      });
-      return;
-    }
-    this.authService
-      .reinicioClaveEnvioCorreo(this.correoElectronico, 'es')
-      .then(function() {
-        swal({
-          position: 'center',
-          type: 'success',
-          title: 'Reinicio de contraseña',
-          text:
-            'Se ha enviado un enlace a tu correo electrónico para que reinicies tu contraseña',
-          showConfirmButton: false,
-          timer: 2000
-        });
-      })
-      .catch(function(error) {
-        swal({
-          position: 'center',
-          type: 'warning',
-          title: 'Reinicio de contraseña',
-          text:
-            'Se produjo un error al enviar el correo electrónico de reinicio de contraseña',
-          showConfirmButton: false,
-          timer: 2000
-        });
-      });
+    this._router.navigate(['login']);
+  }
 
+  cancel() {
     this._router.navigate(['login']);
   }
 }

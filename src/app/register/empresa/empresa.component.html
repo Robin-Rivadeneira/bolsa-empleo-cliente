@@ -121,10 +121,9 @@
                 Página web:
               </label>
               <div class="input-group">
-                <span class="btn-info btn-lg input-group-prepend">www.</span>
                 <input class="form-control text-lowercase" name="paginaWeb" id="paginaWeb"
                        [(ngModel)]="company.web_page" (keyup)="validarPaginaWeb(company.web_page)"
-                       placeholder="midominio.com">
+                       placeholder="www.midominio.com">
                 <i class="fa fa-check btn-success btn-sm" aria-hidden="true"
                    *ngIf="paginaWebValida"></i>
                 <i class="fa fa-close btn-danger btn-sm" aria-hidden="true"

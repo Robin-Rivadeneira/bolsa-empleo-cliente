@@ -1,4 +1,4 @@
-import {Postulante} from './../models/postulante';
+import {Postulante} from '../models/postulante';
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
@@ -33,7 +33,8 @@ export class ProfessionalService {
   }
 
   filterPostulantsField(filter: string, actual_page: number, records_per_page: number) {
-    const url = environment.apiUrl + 'postulants/filter?limit=' + records_per_page + '&page=' + actual_page + '&field=id&order=DESC&filter=' + filter;
+    const url = environment.apiUrl + 'postulants/filter?limit=' + records_per_page + '&page=' + actual_page
+      + '&field=id&order=DESC&filter=' + filter;
     return this._http.get(url);
   }
 
@@ -222,5 +223,10 @@ export class ProfessionalService {
     const url = environment.apiUrl + 'offers?id=' + id;
     this.headers.set('Api-Token', api_token);
     return this._http.delete(url, {headers: this.headers});
+  }
+
+  validateUserName(userName) {
+    const url = environment.apiUrl + 'users/validateUserName/' + userName;
+    return this._http.get(url);
   }
 }

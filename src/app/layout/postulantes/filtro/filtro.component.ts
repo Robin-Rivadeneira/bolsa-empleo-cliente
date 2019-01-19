@@ -482,7 +482,7 @@ export class FiltroComponent implements OnInit {
     this.postulanteService.getPostulants(this.actual_page, this.records_per_page).subscribe(response => {
       this.postulants = response['postulants']['data'];
       console.log('this.postulants');
-      console.log(this.postulants);
+      console.log(response);
       if (response['pagination']['total'] === 0) {
         this.total_pages = 1;
       } else {

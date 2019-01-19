@@ -20,6 +20,7 @@ export class DatosPersonalesComponent implements OnInit {
   professional: Professional;
   userLogged: User;
   messages: any;
+
   constructor(public postulanteService: ProfessionalService) {
   }
 
