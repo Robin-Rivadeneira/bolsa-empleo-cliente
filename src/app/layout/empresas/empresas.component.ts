@@ -19,13 +19,17 @@ export class EmpresasComponent implements OnInit {
   contadorPostulantes: number;
   contadorOfertas: number;
 
+
   constructor(
     public empresaService: EmpresaService,
     public ofertaService: OfertaService,
     public postulanteService: PostulanteService) {
   }
 
+
+
   ngOnInit() {
+
     this.contadorEmpresas = 0;
     this.contadorPostulantes = 0;
     this.contadorOfertas = 0;

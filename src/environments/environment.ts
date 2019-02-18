@@ -12,8 +12,7 @@ export const environment = {
       storageBucket: 'bolsaempleo-104d4.appspot.com',
       messagingSenderId: '823621543685'
     },
-    apiUrl: 'http://localhost:8089/',
-    prueba: 'hola'
+    apiUrl: 'http://localhost:8089/'
   }
 ;
 

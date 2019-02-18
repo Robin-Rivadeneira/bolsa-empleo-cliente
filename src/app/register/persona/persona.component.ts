@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import swal from 'sweetalert2';
 import {catalogos} from '../../../environments/catalogos';
 import {RegisterService} from '../../services/register.service';
+import {UserService} from '../../services/user.service';
 import {Company} from '../../models/company';
 import {User} from '../../models/user';
 import {Professional} from '../../models/professional';
@@ -27,8 +28,10 @@ export class PersonaComponent implements OnInit {
   correoValido: boolean;
   claveValida: boolean;
   claveConfirmacionValida: boolean;
+  users: any;
 
   constructor(
+    private pruebaServicio: UserService,
     private registerService: RegisterService,
     private postulanteService: PostulanteService,
     private firebaseBDDService: FirebaseBDDService,
@@ -47,6 +50,17 @@ export class PersonaComponent implements OnInit {
     this.sexos = catalogos.sexos;
   }
 
+consultar(){
+
+    this.pruebaServicio.consultar().subscribe(
+      response => {
+        this.users = response;
+    },
+      error => {
+        alert('Hubo un error');
+  }
+    );
+}
 
   validarClave(): boolean {
     if (this.passwordConfirmation == null || this.passwordConfirmation.length === 0) {

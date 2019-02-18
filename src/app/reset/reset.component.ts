@@ -29,9 +29,9 @@ export class ResetComponent implements OnInit {
           response => {
             if (response['email']) {
               this.validUser = true;
-              this.email = response['email'].toString().substring(0, 4);
-              this.email += '******';
-              this.email += response['email'].toString()
+            this.email = response['email'].toString().substring(0, 4);
+            this.email += '******';
+            this.email += response['email'].toString()
                 .substring(response['email'].toString().indexOf('@'), response['email'].toString().length);
             } else {
               this.validUser = false;

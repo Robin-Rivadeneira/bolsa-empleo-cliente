@@ -108,7 +108,6 @@ export class EmpresaComponent implements OnInit {
     if (this.password.length < 6 || this.passwordConfirmation.length < 6) {
       errores += 'La contraseña debe tener al menos 6 caracteres';
     }
-
     if (!this.validarCorreoElectronico(dataUser.email)) {
       if (errores.length > 0) {
         errores += ' - ';
@@ -134,8 +133,6 @@ export class EmpresaComponent implements OnInit {
       this.company.trade_name = this.company.trade_name.toUpperCase();
       this.company.comercial_activity = this.company.comercial_activity.toUpperCase();
       this.company.email = this.user.email.toLowerCase();
-      console.log('this.company.web_page');
-      console.log(this.company.web_page.length);
       if (this.company.web_page.length !== 0) {
         this.company.web_page = this.company.web_page.toLowerCase();
       }
