@@ -56,10 +56,10 @@
       <li class="nav-item dropdown " ngbDropdown *ngIf="userLogged.role=='1' || userLogged.role=='2'">
         <a href="javascript:void(0)" class="nav-link text-white" ngbDropdownToggle>
           <i>
-            <img src="https://cdn2.iconfinder.com/data/icons/business-finance-vol-1-53/30/Untitled-1-10-512.png" class="rounded-circle"
-                 style="width: 80px; height: 80px;" *ngIf="userLogged.role=='1'">
-            <img src="https://cdn0.iconfinder.com/data/icons/business-381/500/business-work_11-512.png" class="rounded-circle"
-                 style="width: 80px; height: 80px;" *ngIf="userLogged.role=='2'">
+            <img src="assets/img/img_perfil_profesional.png" class="rounded-circle"
+                  *ngIf="userLogged.role=='1'">
+            <img src="assets/img/img_perfil_empresa.png" class="rounded-circle"
+                  *ngIf="userLogged.role=='2'">
           </i> Mi Perfil
           <b class="caret"></b>
         </a>
