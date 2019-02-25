@@ -2,11 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgbModal, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
 import swal from 'sweetalert2';
 import {EmpresaService} from '../../../services/empresa.service';
-import {Oferta} from '../../../models/oferta';
-import {FirebaseBDDService} from '../../../services/firebase-bdd.service';
 import {catalogos} from '../../../../environments/catalogos';
 import {Professional} from '../../../models/professional';
-import {AuthService} from '../../../services/auth.service';
 import {Offer} from '../../../models/offer';
 import {User} from '../../../models/user';
 

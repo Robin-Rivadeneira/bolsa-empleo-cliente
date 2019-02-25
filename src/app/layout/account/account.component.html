@@ -4,7 +4,7 @@
       <form name="empresaform" method="post" #formCtrl="ngForm">
         <div class="card m-5">
           <div class="card-header">
-            Actualizar Contraseña
+            Cambiar Contraseña
           </div>
           <div class="card-body">
             <div class="form-group">
@@ -16,7 +16,7 @@
               <div class="row">
                 <div class="col-6">
                   <label for="password" class="col-form-label">
-                    <b class="text-danger">*</b> Contraseña:
+                    <b class="text-danger">*</b> Nueva Contraseña:
                   </label>
                   <div class="input-group">
                     <input type="password" class="form-control" name="password" id="password"
@@ -44,12 +44,17 @@
               </div>
             </div>
             <div class="form-group">
-              <button id="recoverPassword" name="recoverPassword" class="btn btn-link form-control"
-                      (click)="recoverPassword()">
-                <i class="fa fa-key" aria-hidden="true"></i>
-                Recuperar Contraseña
-              </button>
+              <p class="text-muted">
+                - Mínimo 6 caracteres
+              </p>
             </div>
+            <!--<div class="form-group">-->
+            <!--<button id="recoverPassword" name="recoverPassword" class="btn btn-link form-control"-->
+            <!--(click)="recoverPassword()">-->
+            <!--<i class="fa fa-key" aria-hidden="true"></i>-->
+            <!--Recuperar Contraseña-->
+            <!--</button>-->
+            <!--</div>-->
           </div>
           <div class="card-footer text-muted  text-center">
             <h6 class="text-muted">
@@ -57,7 +62,8 @@
               {{messages['requiredFields']['text']}}
             </h6>
             <button class="btn btn-success" (click)="updatePassword()" [disabled]="formCtrl.form.invalid">
-              <span class="{{messages['saveConfirmationDialog']['iconOk']}}"></span>&nbsp;{{messages['saveConfirmationDialog']['ok']}}
+              <span
+                class="{{messages['saveConfirmationDialog']['iconOk']}}"></span>&nbsp;{{messages['saveConfirmationDialog']['ok']}}
             </button>
           </div>
         </div>

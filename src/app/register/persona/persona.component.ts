@@ -1,8 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Postulante} from '../../models/postulante';
-import {FirebaseBDDService} from './../../services/firebase-bdd.service';
 import {PostulanteService} from '../../services/postulante.service';
-import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
 import swal from 'sweetalert2';
 import {catalogos} from '../../../environments/catalogos';
@@ -34,8 +31,6 @@ export class PersonaComponent implements OnInit {
     private pruebaServicio: UserService,
     private registerService: RegisterService,
     private postulanteService: PostulanteService,
-    private firebaseBDDService: FirebaseBDDService,
-    public authService: AuthService,
     private _router: Router) {
   }
 
@@ -50,17 +45,17 @@ export class PersonaComponent implements OnInit {
     this.sexos = catalogos.sexos;
   }
 
-consultar(){
+  consultar() {
 
     this.pruebaServicio.consultar().subscribe(
       response => {
         this.users = response;
-    },
+      },
       error => {
         alert('Hubo un error');
-  }
+      }
     );
-}
+  }
 
   validarClave(): boolean {
     if (this.passwordConfirmation == null || this.passwordConfirmation.length === 0) {

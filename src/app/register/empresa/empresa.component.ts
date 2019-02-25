@@ -1,8 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Company} from '../../models/company';
-import {FirebaseBDDService} from '../../services/firebase-bdd.service';
-import {AuthService} from '../../services/auth.service';
-import {EmpresaService} from '../../services/empresa.service';
 import {Router} from '@angular/router';
 import swal from 'sweetalert2';
 import {Postulante} from '../../models/postulante';
@@ -25,10 +22,7 @@ export class EmpresaComponent implements OnInit {
   claveConfirmacionValida: boolean;
   paginaWebValida: boolean;
 
-  constructor(private registerService: RegisterService,
-              private firebaseBDDService: FirebaseBDDService,
-              public authService: AuthService,
-              private _router: Router) {
+  constructor(private registerService: RegisterService,private _router: Router) {
   }
 
   ngOnInit() {

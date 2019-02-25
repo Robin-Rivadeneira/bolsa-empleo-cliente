@@ -7,10 +7,16 @@ export class AcademicFormation {
   registration_date: Date;
   senescyt_code: string;
   state: string;
+  has_titling: boolean;
+  file: File;
 
   constructor() {
     this.institution = '';
     this.career = '';
     this.professional_degree = '';
+    this.senescyt_code = '';
+    this.registration_date = null;
+    this.has_titling = false;
+    this.file = null;
   }
 }

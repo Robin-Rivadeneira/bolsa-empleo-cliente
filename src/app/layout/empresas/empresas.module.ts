@@ -6,7 +6,7 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {FiltroComponent} from './filtro/filtro.component';
 import {DatosPostulanteComponent} from './datos-postulante/datos-postulante.component';
-import {AuthService} from '../../services/auth.service';
+
 
 @NgModule({
   imports: [
@@ -16,7 +16,7 @@ import {AuthService} from '../../services/auth.service';
     EmpresasRoutingModule
   ],
   declarations: [EmpresasComponent, FiltroComponent, DatosPostulanteComponent],
-  providers: [AuthService]
+  providers: []
 })
 export class EmpresasModule {
 }

@@ -1,4 +1,3 @@
-import {FirebaseBDDService} from './../../services/firebase-bdd.service';
 import {Component, OnInit} from '@angular/core';
 import {EmpresaService} from '../../services/empresa.service';
 import {OfertaService} from '../../services/oferta.service';

@@ -3,8 +3,6 @@ import {PostulanteService} from '../../services/postulante.service';
 import * as jsPDF from 'jspdf';
 import * as html2canvas from 'html2canvas';
 import {Professional} from '../../models/professional';
-import {AuthService} from '../../services/auth.service';
-import {FirebaseBDDService} from '../../services/firebase-bdd.service';
 import {User} from '../../models/user';
 import swal from 'sweetalert2';
 import {AcademicFormation} from '../../models/academic-formation';

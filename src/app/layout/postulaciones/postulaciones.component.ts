@@ -1,13 +1,6 @@
-import {PostulacionDiccionario} from './../../models/miPostulacionDiccionario';
-import {Empresa} from '../../models/empresa';
-import {AuthService} from '../../services/auth.service';
-import {FirebaseBDDService} from '../../services/firebase-bdd.service';
-import {Postulacion} from '../../models/postulacion';
 import {NgbModal, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
 import {Component, OnInit} from '@angular/core';
-import {Postulante} from '../../models/postulante';
 import {PostulanteService} from '../../services/postulante.service';
-import {Oferta} from '../../models/oferta';
 import swal from 'sweetalert2';
 import {EmpresaService} from '../../services/empresa.service';
 import {User} from '../../models/user';

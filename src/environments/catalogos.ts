@@ -963,8 +963,16 @@ export const catalogos = {
   ],
 
   idiomas: [
+    {descripcion: 'ALEMÁN'},
+    {descripcion: 'CHINO'},
+    {descripcion: 'CHINO MANDARÍN'},
+    {descripcion: 'COREANO'},
+    {descripcion: 'FRANCÉS'},
     {descripcion: 'INGLÉS'},
-    {descripcion: 'CHINO'}
+    {descripcion: 'ITALIANO'},
+    {descripcion: 'JAPONÉS'},
+    {descripcion: 'PORTUGUÉS'},
+    {descripcion: 'RUSO'}
   ],
 
   categoriasFortaleza: [

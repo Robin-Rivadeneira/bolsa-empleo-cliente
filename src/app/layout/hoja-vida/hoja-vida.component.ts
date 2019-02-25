@@ -1,6 +1,4 @@
 import {Postulante} from './../../models/postulante';
-import {AuthService} from './../../services/auth.service';
-import {FirebaseBDDService} from './../../services/firebase-bdd.service';
 import {Component, OnInit} from '@angular/core';
 import {PostulanteService} from '../../services/postulante.service';
 import swal from 'sweetalert2';
@@ -13,27 +11,16 @@ import swal from 'sweetalert2';
 export class HojaVidaComponent implements OnInit {
   postulantes = [];
 
-  constructor(
-    private authService: AuthService,
-    private postulanteService: PostulanteService,
-    private firebaseBDDService: FirebaseBDDService) {
+  constructor(private postulanteService: PostulanteService) {
   }
 
   ngOnInit() {
-    this.postulanteService.postulante = this.authService.usuarioNegocio as Postulante;
+
     this.validarEstudiosRealizados();
   }
 
   guardarCambios() {
-    this.firebaseBDDService.firebaseControllerPostulantes.actualizar(this.postulanteService.postulante);
-    swal({
-      position: 'center',
-      type: 'success',
-      title: 'Insertar',
-      text: 'Registro exitoso!',
-      showConfirmButton: true,
-      timer: 2000
-    });
+
   }
 
   validarEstudiosRealizados() {

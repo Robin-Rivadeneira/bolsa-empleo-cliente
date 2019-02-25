@@ -34,7 +34,6 @@ export class AccountComponent implements OnInit {
   updatePassword() {
     const validacion = this.validarFormulario(this.user);
     if (validacion === '') {
-
       this.user.password = this.password;
       this.userService.updatePassword({'user': this.user}, this.user.api_token)
         .subscribe(

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {routerTransition} from '../router.animations';
 import {Router} from '@angular/router';
-import {AuthService} from '../services/auth.service';
+
 import swal from 'sweetalert2';
 import {environment} from '../../environments/environment';
 import {RegisterService} from '../services/register.service';

@@ -24,6 +24,7 @@ export class EstudiosRealizadosComponent implements OnInit {
   titles: Array<any>;
   tipo_titulo: Array<any>;
   instituciones: Array<any>;
+  has_titling: boolean;
 
   constructor(private modalService: NgbModal, public postulanteService: ProfessionalService) {
   }
@@ -253,5 +254,12 @@ export class EstudiosRealizadosComponent implements OnInit {
         this.tipo_titulo = titulo.campos_especificos;
       }
     });
+  }
+
+  validateTitlingUnit() {
+    if (!this.has_titling) {
+      this.selectedAcademicFormation.senescyt_code = '';
+      this.selectedAcademicFormation.registration_date = null;
+    }
   }
 }
