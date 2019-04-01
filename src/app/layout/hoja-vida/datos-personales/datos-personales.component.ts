@@ -1,4 +1,3 @@
-import {PostulanteService} from './../../../services/postulante.service';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {catalogos} from '../../../../environments/catalogos';
 import swal from 'sweetalert2';
@@ -32,17 +31,6 @@ export class DatosPersonalesComponent implements OnInit {
     this.estadosCiviles = catalogos.estadosCiviles;
     this.sexos = catalogos.sexos;
     this.getProfessional();
-  }
-
-  CodificarArchivo(event) {
-    const reader = new FileReader();
-    if (event.target.files && event.target.files.length > 0) {
-      const file = event.target.files[0];
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.postulanteService.postulante.fotografia = 'data:' + file.type + ';base64,' + reader.result.split(',')[1];
-      };
-    }
   }
 
   updateProfessional(): void {

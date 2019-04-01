@@ -261,7 +261,7 @@
         <th width="30%">Descripción</th>
         </thead>
         <tbody>
-        <tr *ngFor="let item of curriculum.fortalezas">
+        <tr *ngFor="let item of curriculum">
           <td>{{item.nombre}}</td>
           <td>{{item.descripcion}}</td>
         </tr>
@@ -286,7 +286,7 @@
         <th>Teléfono</th>
         </thead>
         <tbody>
-        <tr *ngFor="let item of curriculum.referenciasPersonales">
+        <tr *ngFor="let item of curriculum">
           <td>{{item.nombresApellidos}}</td>
           <td>{{item.cargo}}</td>
           <td>{{item.empresa}}</td>

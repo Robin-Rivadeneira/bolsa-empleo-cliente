@@ -47,13 +47,13 @@ export class ProfesionalesComponent implements OnInit {
             swal({
               position: this.messages['createSuccess']['position'],
               type: this.messages['createSuccess']['type'],
-              // title: this.messages['createSuccess']['title'],
-              title: response.valueOf().toString(),
+              title: this.messages['createSuccess']['title'],
               text: this.messages['createSuccess']['text'],
               timer: this.messages['createSuccess']['timer'],
               showConfirmButton: this.messages['createSuccess']['showConfirmButton'],
               backdrop: this.messages['createSuccess']['backdrop']
             });
+            this.getProfessionals();
           }
         },
         error => {

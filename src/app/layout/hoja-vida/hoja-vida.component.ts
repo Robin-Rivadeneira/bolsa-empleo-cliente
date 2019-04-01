@@ -1,7 +1,7 @@
-import {Postulante} from './../../models/postulante';
 import {Component, OnInit} from '@angular/core';
 import {PostulanteService} from '../../services/postulante.service';
 import swal from 'sweetalert2';
+import {catalogos} from '../../../environments/catalogos';
 
 @Component({
   selector: 'app-hoja-vida',
@@ -16,20 +16,7 @@ export class HojaVidaComponent implements OnInit {
 
   ngOnInit() {
 
-    this.validarEstudiosRealizados();
   }
 
-  guardarCambios() {
 
-  }
-
-  validarEstudiosRealizados() {
-    if (this.postulanteService.postulante.estudiosRealizados == null) {
-      swal({
-        title: 'Por favor complete sus datos',
-        text: 'Mientras no actualice su información no aparecerá en Profesionales!',
-        type: 'warning'
-      });
-    }
-  }
 }

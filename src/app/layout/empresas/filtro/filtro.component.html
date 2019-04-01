@@ -60,7 +60,7 @@
             <button class="btn btn-info" type="button" (click)="filterOffersField()">
               <span class="fa fa-search"></span>&nbsp;Buscar
             </button>
-            <button class="btn btn-warning ml-1" type="button" (click)="openFilter(modalFilter)">
+            <button class="btn btn-warning ml-1" type="button" (click)="openFilter(modalFilter,null,true)">
               <span class="fa fa-sliders"></span>&nbsp;Filtrar
             </button>
           </div>
@@ -134,7 +134,7 @@
                 </h6>
                 <h6 class="text-muted texto">
                   <i class="fa fa-map-marker" aria-hidden="true"></i>
-                  {{ofertaActual.city+ ', ' +ofertaActual.province}}
+                  {{ofertaActual.city + ', ' + ofertaActual.province}}
                 </h6>
               </div>
               <div class="col-lg-3 col-sm-12">

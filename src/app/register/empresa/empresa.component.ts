@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Company} from '../../models/company';
 import {Router} from '@angular/router';
 import swal from 'sweetalert2';
-import {Postulante} from '../../models/postulante';
 import {RegisterService} from '../../services/register.service';
 import {User} from '../../models/user';
+import {environment} from '../../../environments/environment';
 
 
 @Component({
@@ -22,7 +22,7 @@ export class EmpresaComponent implements OnInit {
   claveConfirmacionValida: boolean;
   paginaWebValida: boolean;
 
-  constructor(private registerService: RegisterService,private _router: Router) {
+  constructor(private registerService: RegisterService, private _router: Router) {
   }
 
   ngOnInit() {
@@ -149,7 +149,7 @@ export class EmpresaComponent implements OnInit {
           );
           sessionStorage.setItem('user_logged', JSON.stringify(response));
 
-          location.replace('/postulantes');
+          location.replace('postulantes');
         },
         error => {
           if (error.valueOf().error.errorInfo[0] === '23505') {

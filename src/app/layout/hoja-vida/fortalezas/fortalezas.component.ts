@@ -1,6 +1,4 @@
-import {Fortaleza} from './../../../models/fortaleza';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {PostulanteService} from './../../../services/postulante.service';
 import {Component, OnInit} from '@angular/core';
 import {catalogos} from '../../../../environments/catalogos';
 import swal from 'sweetalert2';

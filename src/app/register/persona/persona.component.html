@@ -31,6 +31,45 @@
                 </div>
               </div>
             </div>
+            <!-- Contraseña !-->
+            <div class="form-group">
+              <div class="row">
+                <div class="col-6">
+                  <label for="password" class="col-form-label">
+                    <b class="text-danger">*</b> Contraseña:
+                  </label>
+                  <div class="input-group">
+                    <input type="password" class="form-control" name="password" id="password"
+                           [(ngModel)]="password" (keyup)="validarClave()" required>
+                    <i class="fa fa-check btn-success btn-sm" aria-hidden="true"
+                       *ngIf="claveValida"></i>
+                    <i class="fa fa-close btn-danger btn-sm" aria-hidden="true"
+                       *ngIf="!claveValida"></i>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <label for="confirmar" class="col-form-label">
+                    <b class="text-danger">*</b> Repetir Contraseña:
+                  </label>
+                  <div class="input-group">
+                    <input type="password" class="form-control" name="confirmar" id="confirmar"
+                           (keyup)="validarClaveConfirmacion()"
+                           [(ngModel)]="passwordConfirmation" required>
+                    <i class="fa fa-check btn-success btn-sm" aria-hidden="true"
+                       *ngIf="claveConfirmacionValida"></i>
+                    <i class="fa fa-close btn-danger btn-sm" aria-hidden="true"
+                       *ngIf="!claveConfirmacionValida"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-lg-12">
+                  <h6 class="text-muted">- Mínimo 6 caracteres</h6>
+                </div>
+              </div>
+            </div>
             <!-- nombres !-->
             <div class="form-group">
               <label for="nombres" class="col-form-label">
@@ -68,42 +107,11 @@
                     <b class="text-danger">*</b> Fecha de Nacimiento:
                   </label>
                   <input type="date" class="form-control" name="fechaDeNacimiento" id="fechaDeNacimiento"
-                         (keypress)="false" [(ngModel)]="professional.birthdate" required>
+                         (keypress)="true" [(ngModel)]="professional.birthdate" required>
                 </div>
               </div>
             </div>
-            <!-- Contraseña !-->
-            <div class="form-group">
-              <div class="row">
-                <div class="col-6">
-                  <label for="password" class="col-form-label">
-                    <b class="text-danger">*</b> Contraseña:
-                  </label>
-                  <div class="input-group">
-                    <input type="password" class="form-control" name="password" id="password"
-                           [(ngModel)]="password" (keyup)="validarClave()" required>
-                    <i class="fa fa-check btn-success btn-sm" aria-hidden="true"
-                       *ngIf="claveValida"></i>
-                    <i class="fa fa-close btn-danger btn-sm" aria-hidden="true"
-                       *ngIf="!claveValida"></i>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <label for="confirmar" class="col-form-label">
-                    <b class="text-danger">*</b> Repetir Contraseña:
-                  </label>
-                  <div class="input-group">
-                    <input type="password" class="form-control" name="confirmar" id="confirmar"
-                           (keyup)="validarClaveConfirmacion()"
-                           [(ngModel)]="passwordConfirmation" required>
-                    <i class="fa fa-check btn-success btn-sm" aria-hidden="true"
-                       *ngIf="claveConfirmacionValida"></i>
-                    <i class="fa fa-close btn-danger btn-sm" aria-hidden="true"
-                       *ngIf="!claveConfirmacionValida"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
+
           </div>
           <div class="col-lg-6">
             <!-- Telefono Celular !-->
@@ -155,15 +163,17 @@
                         [(ngModel)]="professional.address" required
                         placeholder="EJ. PROVINCIA, CANTÓN, CALLE PRINCIPAL, CALLE SECUNDARIA, NÚMERO DE CASA"></textarea>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-12 col-sm-12">
-            <button type="submit" class="btn btn-primary mr-1" (click)="register()"
-                    [disabled]="formCtrl.form.invalid">
-              Regístrate
-            </button>
-            <h6 class="text-muted"><b class="text-danger">* </b>Todos los campos son obligatorios</h6>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-lg-12 col-sm-12">
+                  <button type="submit" class="btn btn-primary mr-1" (click)="register()"
+                          [disabled]="formCtrl.form.invalid">
+                    Regístrate
+                  </button>
+                  <h6 class="text-muted"><b class="text-danger">* </b>Todos los campos son obligatorios</h6>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </form>

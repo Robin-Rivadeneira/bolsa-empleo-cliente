@@ -1,4 +1,3 @@
-import {PostulanteService} from './../../services/postulante.service';
 import {FormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HojaVidaRoutingModule} from './hoja-vida-routing.module';
@@ -12,7 +11,6 @@ import {IdiomasComponent} from './idiomas/idiomas.component';
 import {ExperienciaProfesionalComponent} from './experiencia-profesional/experiencia-profesional.component';
 import {FortalezasComponent} from './fortalezas/fortalezas.component';
 import {ReferenciasPersonalesComponent} from './referencias-personales/referencias-personales.component';
-import {PdfComponent} from './pdf/pdf.component';
 import {ProfessionalService} from '../../services/professional.service';
 
 @NgModule({
@@ -31,8 +29,7 @@ import {ProfessionalService} from '../../services/professional.service';
     IdiomasComponent,
     ExperienciaProfesionalComponent,
     FortalezasComponent,
-    ReferenciasPersonalesComponent,
-    PdfComponent]
+    ReferenciasPersonalesComponent]
 })
 export class HojaVidaModule {
 }

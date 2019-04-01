@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {PostulanteService} from '../../services/postulante.service';
 import {Router} from '@angular/router';
 import swal from 'sweetalert2';
 import {catalogos} from '../../../environments/catalogos';
@@ -28,9 +27,7 @@ export class PersonaComponent implements OnInit {
   users: any;
 
   constructor(
-    private pruebaServicio: UserService,
     private registerService: RegisterService,
-    private postulanteService: PostulanteService,
     private _router: Router) {
   }
 
@@ -45,17 +42,6 @@ export class PersonaComponent implements OnInit {
     this.sexos = catalogos.sexos;
   }
 
-  consultar() {
-
-    this.pruebaServicio.consultar().subscribe(
-      response => {
-        this.users = response;
-      },
-      error => {
-        alert('Hubo un error');
-      }
-    );
-  }
 
   validarClave(): boolean {
     if (this.passwordConfirmation == null || this.passwordConfirmation.length === 0) {

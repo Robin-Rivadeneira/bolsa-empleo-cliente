@@ -6,7 +6,6 @@ const routes: Routes = [
   { path: 'login', loadChildren: './login/login.module#LoginModule' },
   { path: 'persona', loadChildren: './register/persona/persona.module#PersonaModule' },
   { path: 'empresa', loadChildren: './register/empresa/empresa.module#EmpresaModule' },
-  { path: 'reset', loadChildren: './reset/reset.module#ResetModule' },
   { path: '**', loadChildren: './page-not-found/page-not-found.module#PageNotFoundModule' }
 ];
 

@@ -1,4 +1,3 @@
-import {Postulante} from '../models/postulante';
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
@@ -8,7 +7,6 @@ import {environment} from '../../environments/environment';
   providedIn: 'root'
 })
 export class ProfessionalService {
-  postulante: Postulante;
   headers: HttpHeaders;
 
   constructor(

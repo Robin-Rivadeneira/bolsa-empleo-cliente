@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {Empresa} from '../models/empresa';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 
@@ -7,7 +6,6 @@ import {environment} from '../../environments/environment';
   providedIn: 'root'
 })
 export class EmpresaService {
-  empresa: Empresa;
   headers: HttpHeaders;
 
   constructor(public _http: HttpClient) {
@@ -20,7 +18,7 @@ export class EmpresaService {
   }
 
   detachPostulant(data: any, api_token: string) {
-    const url = environment.apiUrl + 'postulants/detach';
+    const url = environment.apiUrl + 'companies/detachPostulant';
     this.headers = new HttpHeaders().set('Api-Token', api_token);
     return this._http.post(url, JSON.stringify(data), {headers: this.headers});
   }
