@@ -355,7 +355,7 @@ export class FiltroComponent implements OnInit {
     const conditions = [];
     condition.push(column);
     condition.push('like');
-    condition.push(item);
+    condition.push('%' + item + '%');
     conditions.push(condition);
     this.postulanteService.filterPostulants({'filters': {'conditions': conditions}}, this.actual_page, this.records_per_page).subscribe(
       response => {
@@ -391,37 +391,36 @@ export class FiltroComponent implements OnInit {
   }
 
   countOffers() {
-    this.ofertaService.getAllOffers().subscribe(
+    this.postulanteService.getAllProfessionals().subscribe(
       response => {
-        console.log('entro');
-        this.contarOfertasPorCampoAmplio(response['offers']);
-        this.contarOfertasPorCampoEspecifico(response['offers']);
+        this.contarOfertasPorCampoAmplio(response['professionals']);
+        this.contarOfertasPorCampoEspecifico(response['professionals']);
       });
   }
 
-  contarOfertasPorCampoAmplio(offers: Array<Offer>) {
+  contarOfertasPorCampoAmplio(professionals: Array<Professional>) {
     this.areas.forEach(area => {
       area.total = 0;
     });
-    offers.forEach(offer => {
+    professionals.forEach(professional => {
       this.areas.forEach(area => {
-        if (offer.broad_field === area.campo_amplio) {
+        if (professional.academic_formations[0]['career'] === area.campo_amplio) {
           area.total = area.total + 1;
         }
       });
     });
   }
 
-  contarOfertasPorCampoEspecifico(offers: Array<Offer>) {
+  contarOfertasPorCampoEspecifico(professionals: Array<Professional>) {
     this.areas.forEach(area => {
       area.campos_especificos.forEach(areaEspecifica => {
         areaEspecifica.total = 0;
       });
     });
-    offers.forEach(oferta => {
+    professionals.forEach(professional => {
       this.areas.forEach(area => {
         area.campos_especificos.forEach(areaEspecifica => {
-          if (oferta.specific_field === areaEspecifica.nombre) {
+          if (professional.academic_formations[0]['professional_degree'] === areaEspecifica.nombre) {
             areaEspecifica.total = areaEspecifica.total + 1;
           }
         });

@@ -75,6 +75,7 @@ export class CurriculumComponent implements OnInit {
           doc.addImage(encabezadoHojaDatosImg, 'PNG', 10, 10, 190, 7);
           doc.addImage(cuerpoHojaDatosImg, 'PNG', 30, 17, 160, 265);
           doc.addImage(pieHojaDatosImg, 'PNG', 10, 288, 190, 7);
+
           doc.save('CV_' + this.curriculum.identity + '.pdf');
         });
       });

@@ -18,6 +18,7 @@ export class Professional {
   academic_formations: AcademicFormation;
 
   constructor() {
+    this.academic_formations = new AcademicFormation();
     this.identity = '';
     this.first_name = '';
     this.last_name = '';
