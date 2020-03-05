@@ -34,9 +34,9 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('user_logged', JSON.stringify(response));
         const userLogged = JSON.parse(sessionStorage.getItem('user_logged')) as User;
         if (userLogged && userLogged.role.toString() === '1') {
-          location.replace('/empresas');
+          location.replace('empresas');
         } else if (userLogged && userLogged.role.toString() === '2') {
-          location.replace('/postulantes');
+          location.replace('postulantes');
         }
 
         this.isLoading = false;

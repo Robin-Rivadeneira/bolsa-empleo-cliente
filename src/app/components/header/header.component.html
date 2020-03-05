@@ -4,7 +4,7 @@
   </button>
   <div class="collapse navbar-collapse" id="collapse_target">
     <!--<a [routerLink]="['/postulantes']" [routerLinkActive]="['router-link-active']" class="navbar-brand">-->
-      <!--<img src="assets/img/institutos.png" height="90px"/>-->
+    <!--<img src="assets/img/institutos.png" height="90px"/>-->
     <!--</a>-->
 
     <!--Menu de Mi perfil-->
@@ -57,9 +57,9 @@
         <a href="javascript:void(0)" class="nav-link text-white" ngbDropdownToggle>
           <i>
             <img src="assets/img/img_perfil_profesional.png" class="rounded-circle"
-                  *ngIf="userLogged.role=='1'">
+                 *ngIf="userLogged.role=='1'">
             <img src="assets/img/img_perfil_empresa.png" class="rounded-circle"
-                  *ngIf="userLogged.role=='2'">
+                 *ngIf="userLogged.role=='2'">
           </i> Mi Perfil
           <b class="caret"></b>
         </a>
@@ -82,7 +82,7 @@
             <i class="fa fa-fw fa-wrench"></i>&nbsp;Cambiar Clave
           </a>
           <a *ngIf="userLogged.role=='2' || userLogged.role=='1'" class="dropdown-item"
-             [routerLink]="['/perfil-empresa']" [routerLinkActive]="['router-link-active']" (click)="logout()">
+             [routerLinkActive]="['router-link-active']" (click)="logout()">
             <i class="fa fa-fw fa-power-off"></i>&nbsp;Cerrar Sesión
           </a>
         </div>

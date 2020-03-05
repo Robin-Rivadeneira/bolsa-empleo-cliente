@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
     this.registerService.logout(data).subscribe(
       response => {
         sessionStorage.clear();
-        location.replace('/login');
+        location.replace('login');
       },
       error => {
         if (error.valueOf().error.errorInfo[0] === '23505') {

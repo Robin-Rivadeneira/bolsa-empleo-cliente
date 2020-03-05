@@ -139,7 +139,7 @@ export class PersonaComponent implements OnInit {
             }
           );
           sessionStorage.setItem('user_logged', JSON.stringify(response));
-          location.replace('/empresas');
+          location.replace('empresas');
         },
         error => {
           if (error.valueOf().error.errorInfo[0] === '23505') {

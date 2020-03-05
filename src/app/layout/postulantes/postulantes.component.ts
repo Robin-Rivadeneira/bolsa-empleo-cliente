@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {EmpresaService} from '../../services/empresa.service';
 import {OfertaService} from '../../services/oferta.service';
 import {PostulanteService} from '../../services/postulante.service';
+import {catalogos} from '../../../environments/catalogos';
 
 @Component({
   selector: 'app-postulantes',
@@ -13,6 +14,8 @@ export class PostulantesComponent implements OnInit {
   contadorPostulantes: number;
   contadorOfertas: number;
 
+  titulos: any;
+
   constructor(
     public empresaService: EmpresaService,
     public ofertaService: OfertaService,
@@ -20,6 +23,7 @@ export class PostulantesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.titulos = catalogos.titulos;
     this.contadorEmpresas = 0;
     this.contadorPostulantes = 0;
     this.contadorOfertas = 0;

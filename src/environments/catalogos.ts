@@ -944,7 +944,7 @@ export const catalogos = {
   ],
 
   estadosCiviles: [
-    {descripcion: 'CASADO (A)'},
+      {descripcion: 'CASADO (A)'},
     {descripcion: 'DIVORCIADO (A)'},
     {descripcion: 'SOLTERO (A)'},
     {descripcion: 'UNIÓN DE HECHO'},
