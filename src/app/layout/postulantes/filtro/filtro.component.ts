@@ -161,8 +161,6 @@ export class FiltroComponent implements OnInit {
     this.postulanteService.getAcademicFormations(this.actual_page, this.records_per_page, this.selectedPostulant.id, this.userLogged.api_token)
       .subscribe(
         response => {
-          console.log('academicFormations');
-          console.log(response['academicFormations']);
           this.academicFormations = response['academicFormations']['data'];
           this.total_pages = response['pagination']['last_page'];
         },
@@ -184,8 +182,6 @@ export class FiltroComponent implements OnInit {
     this.postulanteService.getCourses(this.actual_page, this.records_per_page, this.selectedPostulant.id, this.userLogged.api_token)
       .subscribe(
         response => {
-          console.log('Courses');
-          console.log(response['Courses']);
           this.courses = response['courses']['data'];
           this.total_pages = response['pagination']['last_page'];
         },
@@ -248,8 +244,6 @@ export class FiltroComponent implements OnInit {
     this.postulanteService.getProfessionalExperiences(this.actual_page, this.records_per_page, this.selectedPostulant.id, this.userLogged.api_token)
       .subscribe(
         response => {
-          console.log('Courses');
-          console.log(response['Courses']);
           this.professionalExperiences = response['professionalExperiences']['data'];
           this.total_pages = response['pagination']['last_page'];
         },
@@ -330,7 +324,7 @@ export class FiltroComponent implements OnInit {
 
   filterPostulantsField() {
     this.filterOption = 'field';
-    this.postulanteService.filterPostulantsField(this.criterioBusqueda, this.actual_page, this.records_per_page).subscribe(
+    this.postulanteService.filterPostulantsField(this.criterioBusqueda.toUpperCase(), this.actual_page, this.records_per_page).subscribe(
       response => {
         this.postulants = response['postulants']['data'];
         if (response['pagination']['total'] === 0) {
@@ -402,10 +396,14 @@ export class FiltroComponent implements OnInit {
     this.areas.forEach(area => {
       area.total = 0;
     });
+    console.log(professionals);
+
     professionals.forEach(professional => {
       this.areas.forEach(area => {
-        if (professional.academic_formations[0]['career'] === area.campo_amplio) {
-          area.total = area.total + 1;
+        if (professional.academic_formations.length > 0) {
+          if (professional.academic_formations[0]['career'] == area.campo_amplio) {
+            area.total = area.total + 1;
+          }
         }
       });
     });
@@ -417,12 +415,17 @@ export class FiltroComponent implements OnInit {
         areaEspecifica.total = 0;
       });
     });
+    let i = 0;
     professionals.forEach(professional => {
       this.areas.forEach(area => {
         area.campos_especificos.forEach(areaEspecifica => {
-          if (professional.academic_formations[0]['professional_degree'] === areaEspecifica.nombre) {
-            areaEspecifica.total = areaEspecifica.total + 1;
+          // console.log(professional.academic_formations[0]['professional_degree']);
+          if (professional.academic_formations.length > 0) {
+            if (professional.academic_formations[0]['professional_degree'] == areaEspecifica.nombre) {
+              areaEspecifica.total = areaEspecifica.total + 1;
+            }
           }
+
         });
       });
     });
@@ -445,11 +448,8 @@ export class FiltroComponent implements OnInit {
         }).then((result) => {
           if (result.value) {
             this.router.navigate(['login']);
-          } else if (
-            // Read more about handling dismissals
-            result.dismiss === swal.DismissReason.cancel
-          ) {
-            this.router.navigate(['persona']);
+          } else if (result.dismiss === swal.DismissReason.cancel) {
+            this.router.navigate(['empresa']);
           }
         });
       }
@@ -480,8 +480,6 @@ export class FiltroComponent implements OnInit {
   getPostulants(): void {
     this.postulanteService.getPostulants(this.actual_page, this.records_per_page).subscribe(response => {
       this.postulants = response['postulants']['data'];
-      console.log('this.postulants');
-      console.log(response);
       if (response['pagination']['total'] === 0) {
         this.total_pages = 1;
       } else {

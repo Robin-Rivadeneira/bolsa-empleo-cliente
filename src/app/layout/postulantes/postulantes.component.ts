@@ -30,6 +30,7 @@ export class PostulantesComponent implements OnInit {
     this.contarEmpresas();
     this.contarPostulantes();
     this.contarOfertas();
+
   }
 
   contarEmpresas() {

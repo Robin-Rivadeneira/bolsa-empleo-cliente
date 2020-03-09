@@ -54,7 +54,8 @@
     <div class="row">
       <div class="col-12">
         <div class="input-group">
-          <input type="text" class="form-control text-uppercase" placeholder="Buscar..." aria-label=""
+          <input type="text" class="form-control text-uppercase"
+                 placeholder="Ingrese su criterio de búsqueda (software, asistente, marketing, etc...)" aria-label=""
                  aria-describedby="basic-addon1" [(ngModel)]="criterioBusqueda">
           <div class="input-group-append">
             <button class="btn btn-info" type="button" (click)="filterPostulantsField()">
@@ -114,8 +115,12 @@
     <div class="row" style="overflow: auto">
       <div class="col-lg-4 col-sm-12" *ngFor="let postulanteActual of postulants">
         <div class="single-special text-center mt-2">
-          <h4 class="text-uppercase" style="overflow:auto;height: 75px;" *ngFor="let titulo of postulanteActual.academic_formations">
+          <h4 class="text-uppercase" style="overflow:auto;height: 90px;"
+              *ngFor="let titulo of postulanteActual.academic_formations">
             {{titulo.professional_degree}}
+          </h4>
+          <h4 *ngIf="!postulanteActual.academic_formations" class="text-uppercase" style="overflow:auto;height: 75px;">
+            {{postulanteActual.professional_degree}}
           </h4>
           <p><b>Mi Perfil</b></p>
           <p style="overflow: auto; height: 200px" class="text-justify">{{postulanteActual.about_me}}</p>

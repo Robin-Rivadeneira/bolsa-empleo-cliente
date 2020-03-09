@@ -16,7 +16,7 @@ import {User} from '../../../models/user';
 export class FiltroComponent implements OnInit {
   filters: Array<String>;
   columns = new Array('code', 'province', 'broad_field', 'position', 'city', 'specific_field');
-  operators = new Array('=', '=', 'like', 'like', 'like', '=');
+  operators = new Array('=', '=', '=', 'like', '=', '=');
   areas: Array<any>;
   etiquetaPrincipal: string;
   criterioBusqueda: string;
@@ -153,12 +153,15 @@ export class FiltroComponent implements OnInit {
       if (this.filters[i] != null && this.filters[i] !== '') {
         condition.push(this.columns[i]);
         condition.push(this.operators[i]);
-        condition.push(this.filters[i]);
+        if (i === 3) {
+          condition.push('%' + this.filters[i].toUpperCase() + '%');
+        } else {
+          condition.push(this.filters[i].toUpperCase());
+        }
         conditions.push(condition);
         condition = [];
       }
     }
-    console.log(conditions);
     this.ofertaService.filterOffers({'filters': {'conditions': conditions}}, this.actual_page, this.records_per_page).subscribe(
       response => {
         this.offers = response['offers']['data'];
@@ -178,6 +181,8 @@ export class FiltroComponent implements OnInit {
 
   filterOffersField() {
     this.filterOption = 'field';
+    this.etiquetaPrincipal = this.criterioBusqueda.toUpperCase();
+    this.filters = null;
     this.ofertaService.filterOffersField(this.criterioBusqueda, this.actual_page, this.records_per_page).subscribe(
       response => {
         this.offers = response['offers']['data'];
@@ -197,7 +202,7 @@ export class FiltroComponent implements OnInit {
 
   filterOffersSingle(column, item) {
     this.filterOption = 'single';
-    this.etiquetaPrincipal = item;
+    this.etiquetaPrincipal = item.toUpperCase();
     this.filters = null;
     const condition = [];
     const conditions = [];

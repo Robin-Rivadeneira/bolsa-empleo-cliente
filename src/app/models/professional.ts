@@ -15,10 +15,13 @@ export class Professional {
   address: string;
   about_me: string;
   state: string;
-  academic_formations: AcademicFormation;
+  academic_formations: Array<AcademicFormation>;
+  academics_formations: Array<AcademicFormation>;
 
   constructor() {
-    this.academic_formations = new AcademicFormation();
+    // this.academic_formations = new AcademicFormation();
+    this.academic_formations = new Array<AcademicFormation>();
+    this.academics_formations = new Array<AcademicFormation>();
     this.identity = '';
     this.first_name = '';
     this.last_name = '';
