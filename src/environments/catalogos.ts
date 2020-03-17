@@ -976,8 +976,12 @@ export const catalogos = {
   ],
 
   categoriasFortaleza: [
-    {descripcion: 'CATEGORIA1'},
-    {descripcion: 'CATEGORIA2'}
+    {descripcion: 'CREATIVIDAD'},
+    {descripcion: 'INTELIGENCIA SOCIAL'},
+    {descripcion: 'LIDERAZGO'},
+    {descripcion: 'AUTOCONTROL'},
+    {descripcion: 'GRATITUD'},
+    {descripcion: 'PERSISTENCIA'}
   ],
 
   messages:

@@ -113,14 +113,14 @@
                   <b class="text-danger">*</b> Fecha Inicio:
                 </label>
                 <input type="date" class="form-control" name="start_date" id="start_date"
-                       (keypress)="false" [(ngModel)]="selectedProfessionalExperience.start_date" required>
+                       [(ngModel)]="selectedProfessionalExperience.start_date" required>
               </div>
               <div class="col-lg-6" *ngIf="!selectedProfessionalExperience.current_work">
                 <label for="finish_date">
                   <b class="text-danger">*</b> Fecha Fin:
                 </label>
                 <input type="date" class="form-control" name="finish_date" id="finish_date"
-                       (keypress)="false" [(ngModel)]="selectedProfessionalExperience.finish_date">
+                       [(ngModel)]="selectedProfessionalExperience.finish_date">
               </div>
             </div>
           </div>
@@ -141,10 +141,12 @@
         {{messages['requiredFields']['text']}}
       </h6>
       <button class="btn btn-success" (click)="c('save')" [disabled]="formCtrl.form.invalid">
-        <span class="{{messages['saveConfirmationDialog']['iconOk']}}"></span>&nbsp;{{messages['saveConfirmationDialog']['ok']}}
+        <span
+          class="{{messages['saveConfirmationDialog']['iconOk']}}"></span>&nbsp;{{messages['saveConfirmationDialog']['ok']}}
       </button>
       <button class="btn btn-danger" (click)="c('close')">
-        <span class="{{messages['saveConfirmationDialog']['iconCancel']}}"></span>&nbsp;{{messages['saveConfirmationDialog']['cancel']}}
+        <span
+          class="{{messages['saveConfirmationDialog']['iconCancel']}}"></span>&nbsp;{{messages['saveConfirmationDialog']['cancel']}}
       </button>
     </div>
   </form>

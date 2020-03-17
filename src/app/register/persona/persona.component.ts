@@ -84,7 +84,7 @@ export class PersonaComponent implements OnInit {
 
   validarCorreoElectronico(correoElectronico: string) {
     const expreg = /^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/;
-    if (expreg.test(correoElectronico)) {
+    if (expreg.test(correoElectronico.toLowerCase())) {
       this.correoValido = true;
       return true;
     } else {
@@ -96,6 +96,9 @@ export class PersonaComponent implements OnInit {
 
   validarFormulario(dataUser: User): string {
     let errores = '';
+    if (this.professional.identity.length !== 10) {
+      errores += 'El R.U.C. debe tener 13 dígitos';
+    }
     if (this.password.length < 6 || this.passwordConfirmation.length < 6) {
       errores += 'La contraseña debe tener al menos 6 caracteres';
     }
