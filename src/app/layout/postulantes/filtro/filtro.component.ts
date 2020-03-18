@@ -396,7 +396,7 @@ export class FiltroComponent implements OnInit {
     this.areas.forEach(area => {
       area.total = 0;
     });
-    console.log(professionals);
+
 
     professionals.forEach(professional => {
       this.areas.forEach(area => {

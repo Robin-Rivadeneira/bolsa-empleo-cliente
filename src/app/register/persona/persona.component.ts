@@ -32,6 +32,8 @@ export class PersonaComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.password = '';
+    this.passwordConfirmation = '';
     this.correoValido = false;
     this.claveValida = false;
     this.claveConfirmacionValida = false;
@@ -41,7 +43,6 @@ export class PersonaComponent implements OnInit {
     this.estadosCiviles = catalogos.estadosCiviles;
     this.sexos = catalogos.sexos;
   }
-
 
   validarClave(): boolean {
     if (this.passwordConfirmation == null || this.passwordConfirmation.length === 0) {
@@ -94,12 +95,25 @@ export class PersonaComponent implements OnInit {
 
   }
 
+  validarFechaNacimiento() {
+    console.log(this.professional.birthdate);
+    const fechaActual = new Date();
+    if (this.professional.birthdate != null && this.professional.birthdate.toString() !== '') {
+      this.professional.birthdate = new Date(this.professional.birthdate.toString() + ' GMT-0500');
+      const resp = fechaActual.getFullYear() - this.professional.birthdate.getFullYear();
+      console.log(resp);
+      return fechaActual.getFullYear() - this.professional.birthdate.getFullYear() >= 18;
+    } else {
+      // this.selectedOffer.finish_date = null;
+      return false;
+    }
+  }
+
   validarFormulario(dataUser: User): string {
     let errores = '';
     if (this.password.length < 6 || this.passwordConfirmation.length < 6) {
       errores += 'La contraseña debe tener al menos 6 caracteres';
     }
-
     if (!this.validarCorreoElectronico(dataUser.email)) {
       if (errores.length > 0) {
         errores += ' - ';
@@ -116,6 +130,10 @@ export class PersonaComponent implements OnInit {
       const correo = dataUser.email.split('', 1);
       console.log(correo);
     }
+    if (this.validarFechaNacimiento()) {
+      errores += 'La fecha de nacimiento';
+    }
+
     return errores;
   }
 
@@ -179,4 +197,16 @@ export class PersonaComponent implements OnInit {
       });
     }
   }
+
+  validarSoloNumeros(cadena) {
+    const expreg = /^[0-9]*$/;
+    return expreg.test(cadena);
+  }
+
+  validarSoloLetrasConEspacio(cadena) {
+    const expreg = /^[A-Z_ ]+([A-Z]+)*$/;
+    return expreg.test(cadena.toUpperCase());
+  }
+
+
 }

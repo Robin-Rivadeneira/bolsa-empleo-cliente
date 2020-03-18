@@ -19,6 +19,7 @@ export class DatosPersonalesComponent implements OnInit {
   professional: Professional;
   userLogged: User;
   messages: any;
+  totalCaracteresAboutMe: string;
 
   constructor(public postulanteService: ProfessionalService) {
   }
@@ -78,5 +79,10 @@ export class DatosPersonalesComponent implements OnInit {
           });
         }
       });
+  }
+
+  validarLongitudTexto() {
+
+    return this.professional.about_me.length < 270;
   }
 }

@@ -24,7 +24,7 @@
                   <select class="form-control" name="naturaleza" id="naturaleza" [(ngModel)]="company.nature"
                           required>
                     <option value="" selected>SELECCIONE...</option>
-                    <option value="PÚBLICA">PÚBLICA</option>
+                    <option value="PUBLICA">PÚBLICA</option>
                     <option value="PRIVADA">PRIVADA</option>
                     <option value="MIXTA">MIXTA</option>
                     <option value="TERCER SECTOR">TERCER SECTOR</option>
@@ -84,10 +84,12 @@
             <!-- Actividad Economica !-->
             <div class="form-group">
               <label for="actividadEconomica" class="col-form-label">
-                <b class="text-danger">*</b> Actividad Comercial:
+                <b class="text-danger">*</b> Actividad Comercial: <span
+                class="small">({{company.comercial_activity.length}}
+                /500)</span>
               </label>
               <textarea rows="3" class="form-control text-uppercase" name="actividadEconomica" id="actividadEconomica"
-                        [(ngModel)]="company.comercial_activity" required></textarea>
+                        maxlength="500" [(ngModel)]="company.comercial_activity" required></textarea>
             </div>
           </div>
           <div class="col-lg-6">
@@ -99,14 +101,17 @@
                     Teléfono celular:
                   </label>
                   <input type="tel" class="form-control" name="telefonoCelular" id="telefonoCelular"
-                         [(ngModel)]="company.cell_phone" placeholder="Ej. 0987654321">
+                         (paste)="false"
+                         [(ngModel)]="company.cell_phone" placeholder="Ej. 0987654321" maxlength="10"
+                         (keypress)="validarSoloNumeros($event.key)">
                 </div>
                 <div class="col-6">
                   <label for="telefonoFijo" class="col-form-label">
                     <b class="text-danger">*</b> Teléfono fijo:
                   </label>
-                  <input type="tel" class="form-control" name="telefonoFijo" id="telefonoFijo"
-                         [(ngModel)]="company.phone" placeholder="Ej. 0234567890" required>
+                  <input type="tel" class="form-control" name="telefonoFijo" id="telefonoFijo" (paste)="false"
+                         [(ngModel)]="company.phone" placeholder="Ej. 0234567890" required maxlength="9"
+                         (keypress)="validarSoloNumeros($event)">
                 </div>
               </div>
             </div>
@@ -143,9 +148,9 @@
             <!-- Dirección -->
             <div class="form-group">
               <label for="direccion" class="col-form-label">
-                <b class="text-danger">*</b> Dirección:
+                <b class="text-danger">*</b> Dirección: <span class="small">({{company.address.length}}/300)</span>
               </label>
-              <textarea rows="3" class="form-control text-uppercase" name="direccion" id="direccion"
+              <textarea rows="3" class="form-control text-uppercase" name="direccion" id="direccion" maxLength="300"
                         placeholder="EJ. PROVINCIA, CANTÓN, CALLE PRINCIPAL, CALLE SECUNDARIA, NÚMERO DE CASA"
                         [(ngModel)]="company.address" required></textarea>
             </div>

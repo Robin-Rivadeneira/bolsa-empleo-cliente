@@ -57,7 +57,7 @@
                 <select class="form-control" id="naturaleza" name="naturaleza"
                         [(ngModel)]="company.nature" required>
                   <option value="" selected>SELECCIONE...</option>
-                  <option value="PÚBLICA">PÚBLICA</option>
+                  <option value="PUBLICA">PÚBLICA</option>
                   <option value="PRIVADA">PRIVADA</option>
                   <option value="MIXTA">MIXTA</option>
                   <option value="TERCER SECTOR">TERCER SECTOR</option>
@@ -68,10 +68,12 @@
               <!--Actividad Economica-->
               <div class="form-group">
                 <label for="actividadEconomica">
-                  <b class="text-danger">*</b> Actividad Económica:
+                  <b class="text-danger">*</b> Actividad Económica: <span
+                  class="small">({{company.comercial_activity.length}}
+                  /500)</span>
                 </label>
                 <textarea rows="5" type="text" [(ngModel)]="company.comercial_activity"
-                          class="form-control text-uppercase" required
+                          class="form-control text-uppercase" required maxlength="500"
                           id="actividadEconomica" name="actividadEconomica"
                           placeholder="ACTIVIDAD ECONÓMICA"></textarea>
               </div>
@@ -90,7 +92,7 @@
                   <div class="col-6">
                     <label for="telefonoCelular">Teléfono Celular:</label>
                     <input type="text" class="form-control" id="telefonoCelular" name="telefonoCelular"
-                           placeholder="Ej. 0987654321"
+                           placeholder="Ej. 0987654321" maxlength="10"
                            [(ngModel)]="company.cell_phone">
                   </div>
                   <div class="col-6">
@@ -98,7 +100,7 @@
                       <b class="text-danger">*</b> Teléfono Fijo:
                     </label>
                     <input type="text" class="form-control" id="telefonoFijo" name="telefonoFijo"
-                           placeholder="Ej. 0234567890"
+                           placeholder="Ej. 0234567890" maxlength="9"
                            [(ngModel)]="company.phone" required>
                   </div>
                 </div>
@@ -115,10 +117,11 @@
               <!--Direccion-->
               <div class="form-group">
                 <label for="direccion">
-                  <b class="text-danger">*</b> Dirección:
+                  <b class="text-danger">*</b> Dirección: <span class="small">({{company.address.length}}
+                  /300)</span>
                 </label>
                 <textarea rows="5" type="text" [(ngModel)]="company.address"
-                          class="form-control text-uppercase"
+                          class="form-control text-uppercase" maxlength="300"
                           id="direccion" name="direccion" required
                           placeholder="Provincia, Cantón, Calle Principal, Calle Secundaria, número de casa"></textarea>
               </div>

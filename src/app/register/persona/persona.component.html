@@ -14,7 +14,8 @@
                   <label for="identificacion" class="col-form-label">
                     Identificación:
                   </label>
-                  <input class="form-control" name="identificacion" id="identificacion"
+                  <input class="form-control" name="identificacion" id="identificacion" maxlength="10"
+                         (keypress)="validarSoloNumeros($event.key)"
                          [(ngModel)]="professional.identity" placeholder="Ej. 1734839443" required>
                 </div>
                 <div class="col-6">
@@ -37,10 +38,11 @@
                 <div class="col-6">
                   <label for="password" class="col-form-label">
                     <b class="text-danger">*</b> Contraseña:
+                    <span class="small">({{password.length}}/30)</span>
                   </label>
                   <div class="input-group">
                     <input type="password" class="form-control" name="password" id="password"
-                           [(ngModel)]="password" (keyup)="validarClave()" required>
+                           [(ngModel)]="password" (keyup)="validarClave()" required maxlength="30">
                     <i class="fa fa-check btn-success btn-sm" aria-hidden="true"
                        *ngIf="claveValida"></i>
                     <i class="fa fa-close btn-danger btn-sm" aria-hidden="true"
@@ -50,10 +52,11 @@
                 <div class="col-6">
                   <label for="confirmar" class="col-form-label">
                     <b class="text-danger">*</b> Repetir Contraseña:
+                    <span class="small">({{passwordConfirmation.length }}/30)</span>
                   </label>
                   <div class="input-group">
                     <input type="password" class="form-control" name="confirmar" id="confirmar"
-                           (keyup)="validarClaveConfirmacion()"
+                           (keyup)="validarClaveConfirmacion()" maxlength="30"
                            [(ngModel)]="passwordConfirmation" required>
                     <i class="fa fa-check btn-success btn-sm" aria-hidden="true"
                        *ngIf="claveConfirmacionValida"></i>
@@ -75,16 +78,17 @@
               <label for="nombres" class="col-form-label">
                 <b class="text-danger">*</b> Nombres:
               </label>
-              <input class="form-control text-uppercase" name="nombres" id="nombres"
-                     [(ngModel)]="professional.first_name" placeholder="EJ. JORGE LUIS" required>
+              <input class="form-control text-uppercase" name="nombres" id="nombres" maxlength="100"
+                     (keypress)="validarSoloLetrasConEspacio($event.key)" (paste)="false"
+                     [(ngModel)]="professional.first_name" placeholder="EJ. CESAR MAURICIO" required>
             </div>
             <!-- apellidos !-->
             <div class="form-group">
               <label for="apellidos" class="col-form-label">
                 <b class="text-danger">*</b> Apellidos:
               </label>
-              <input class="form-control text-uppercase" name="apellidos" id="apellidos"
-                     [(ngModel)]="professional.last_name" placeholder="EJ. TAMAYO LÓPEZ" required>
+              <input class="form-control text-uppercase" name="apellidos" id="apellidos" maxlength="100"
+                     [(ngModel)]="professional.last_name" placeholder="EJ. TAMAYO LOPEZ" required (paste)="false">
             </div>
             <!-- Estado civil !-->
             <div class="form-group">
@@ -122,6 +126,7 @@
                     <b class="text-danger">*</b> Teléfono:
                   </label>
                   <input type="tel" class="form-control" name="telefonoCelular" id="telefonoCelular"
+                         maxlength="10" (keypress)="validarSoloNumeros($event.key)"
                          [(ngModel)]="professional.phone" placeholder="Ej. 0987654321" required>
                 </div>
                 <div class="col-lg-6">
@@ -142,10 +147,11 @@
             <div class="form-group">
               <label for="correoElectronico" class="col-form-label">
                 <b class="text-danger">*</b> Correo Electrónico:
+                <span class="small">({{user.email.length }}/50)</span>
               </label>
               <div class="input-group">
                 <input type="email" class="form-control text-lowercase " name="correoElectronico"
-                       id="correoElectronico" (keyup)="validarCorreoElectronico(user.email)"
+                       id="correoElectronico" (keyup)="validarCorreoElectronico(user.email)" maxlength="50"
                        [(ngModel)]="user.email" placeholder="Ej. contacto@gmail.com" required>
 
                 <i class="fa fa-check btn-success btn-sm" aria-hidden="true"
@@ -158,9 +164,10 @@
             <div class="form-group">
               <label for="direccion" class="col-form-label">
                 <b class="text-danger">*</b> Dirección de Domicilio:
+                <span class="small">({{professional.address.length }}/300)</span>
               </label>
               <textarea rows="5" class="form-control text-uppercase" name="direccion" id="direccion"
-                        [(ngModel)]="professional.address" required
+                        [(ngModel)]="professional.address" required maxlength="300"
                         placeholder="EJ. PROVINCIA, CANTÓN, CALLE PRINCIPAL, CALLE SECUNDARIA, NÚMERO DE CASA"></textarea>
             </div>
             <div class="form-group">
@@ -180,3 +187,4 @@
     </div>
   </div>
 </div>
+<button (click)="validarFechaNacimiento()">Validar</button>

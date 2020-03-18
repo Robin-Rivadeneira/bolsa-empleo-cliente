@@ -34,14 +34,14 @@
                       <b class="text-danger">*</b> Identificación:
                     </label>
                     <input type="text" [(ngModel)]="professional.identity"
-                           class="form-control"
+                           class="form-control" maxlength="10"
                            id="identificacion" name="identificacion" placeholder="Ej. 1723456789" required>
                   </div>
                   <div class="col-lg-6">
                     <label for="telefono">
                       <b class="text-danger">*</b> Teléfono:
                     </label>
-                    <input type="text" [(ngModel)]="professional.phone" class="form-control"
+                    <input type="text" [(ngModel)]="professional.phone" class="form-control" maxlength="10"
                            id="telefono" name="telefono" placeholder="Ej. 0987654321" required>
                   </div>
                 </div>
@@ -53,7 +53,7 @@
                     <b class="text-danger">*</b> Nombres:
                   </label>
                   <input type="text" [(ngModel)]="professional.first_name"
-                         class="form-control text-uppercase"
+                         class="form-control text-uppercase" maxlength="100"
                          id="nombres" name="nombres" placeholder="Nombres" required>
                 </div>
                 <div class="col-lg-6">
@@ -61,7 +61,7 @@
                     <b class="text-danger">*</b> Apellidos:
                   </label>
                   <input type="text" [(ngModel)]="professional.last_name"
-                         class="form-control text-uppercase"
+                         class="form-control text-uppercase" maxlength="100"
                          id="apellidos" name="apellidos" placeholder="Apellidos" required>
                 </div>
               </div>
@@ -128,26 +128,29 @@
                   <b class="text-danger">*</b> Correo Electrónico:
                 </label>
                 <input type="email" [(ngModel)]="professional.email"
-                       class="form-control text-lowercase"
+                       class="form-control text-lowercase" maxlength="100"
                        id="correoElectronico" name="correoElectronico" placeholder="Ej. contacto@gmail.com" required>
               </div>
               <!--Direccion-->
               <div class="form-group">
                 <label for="domicilio">
-                  <b class="text-danger">*</b> Dirección de Domicilio:
+                  <b class="text-danger">*</b> Dirección de Domicilio: <span
+                  class="small"> ({{professional.address.length}}/200)</span>
                 </label>
                 <textarea rows="2" type="text" [(ngModel)]="professional.address"
                           class="form-control text-uppercase"
-                          id="domicilio" name="domicilio"
+                          id="domicilio" name="domicilio" maxlength="250"
                           placeholder="EJ. PROVINCIA, CANTÓN, CALLE PRINCIPAL, CALLE SECUNDARIA, NÚMERO DE CASA"
                           required></textarea>
               </div>
               <div class="form-group">
                 <label for="acercaDeMi">
-                  <b class="text-danger">*</b> Acerca de mí:
+                  <b class="text-danger">*</b> Acerca de mí: <span class="small"> ({{professional.about_me.length}}
+                  /270)</span>
                 </label>
                 <textarea rows="4" type="text" [(ngModel)]="professional.about_me"
                           class="form-control text-uppercase" id="acercaDeMi" name="acerdaDeMi"
+                          (keypress)="validarLongitudTexto()" maxlength="270"
                           placeholder="Escriba una descripción acerca de usted" required></textarea>
               </div>
             </div>

@@ -3,6 +3,9 @@ import {EmpresaService} from '../../services/empresa.service';
 import {OfertaService} from '../../services/oferta.service';
 import {PostulanteService} from '../../services/postulante.service';
 import {catalogos} from '../../../environments/catalogos';
+import swal from 'sweetalert2';
+import {Professional} from '../../models/professional';
+import {User} from '../../models/user';
 
 @Component({
   selector: 'app-postulantes',
@@ -13,8 +16,10 @@ export class PostulantesComponent implements OnInit {
   contadorEmpresas: number;
   contadorPostulantes: number;
   contadorOfertas: number;
-
   titulos: any;
+  userLogged: User;
+  professional: Professional;
+  messages: any;
 
   constructor(
     public empresaService: EmpresaService,
@@ -23,6 +28,12 @@ export class PostulantesComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (sessionStorage.getItem('user_logged')) {
+      this.userLogged = JSON.parse(sessionStorage.getItem('user_logged')) as User;
+    } else {
+      this.userLogged = new User();
+    }
+    this.messages = catalogos.messages;
     this.titulos = catalogos.titulos;
     this.contadorEmpresas = 0;
     this.contadorPostulantes = 0;
@@ -30,7 +41,7 @@ export class PostulantesComponent implements OnInit {
     this.contarEmpresas();
     this.contarPostulantes();
     this.contarOfertas();
-
+    this.getProfessional();
   }
 
   contarEmpresas() {
@@ -53,6 +64,37 @@ export class PostulantesComponent implements OnInit {
       response => {
         this.contadorOfertas = response['totalOffers'];
       });
+  }
+
+  getProfessional(): void {
+    if (this.userLogged) {
+      this.postulanteService.getProfessional(this.userLogged.id, this.userLogged.api_token).subscribe(
+        response => {
+          this.professional = response['professional'];
+          if (this.professional.about_me == null || this.professional.about_me === '' || this.professional.academic_formations) {
+            swal({
+              position: this.messages['getProfesional401']['position'],
+              type: this.messages['getProfesional401']['type'],
+              title: this.messages['getProfesional401']['title'],
+              text: this.messages['getProfesional401']['text'],
+              showConfirmButton: this.messages['getProfesional401']['showConfirmButton'],
+              backdrop: this.messages['getProfesional401']['backdrop']
+            });
+          }
+        },
+        error => {
+          if (error.status === 401) {
+            swal({
+              position: this.messages['createError401']['position'],
+              type: this.messages['createError401']['type'],
+              title: this.messages['createError401']['title'],
+              text: this.messages['createError401']['text'],
+              showConfirmButton: this.messages['createError401']['showConfirmButton'],
+              backdrop: this.messages['createError401']['backdrop']
+            });
+          }
+        });
+    }
   }
 
 }

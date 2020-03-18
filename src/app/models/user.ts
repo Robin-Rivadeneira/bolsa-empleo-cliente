@@ -7,8 +7,10 @@ export class User {
   api_token: string;
   role: string;
   state: string;
+
   constructor() {
     this.role = '0';
+    this.email = '';
 
   }
 

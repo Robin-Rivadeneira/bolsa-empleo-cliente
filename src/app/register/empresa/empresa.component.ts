@@ -13,6 +13,7 @@ import {environment} from '../../../environments/environment';
   styleUrls: ['./empresa.component.css']
 })
 export class EmpresaComponent implements OnInit {
+
   company: Company;
   user: User;
   password: string;
@@ -181,5 +182,10 @@ export class EmpresaComponent implements OnInit {
         showConfirmButton: true
       });
     }
+  }
+
+  validarSoloNumeros(cadena) {
+    const expreg = /^[0-9]*$/;
+    return expreg.test(cadena);
   }
 }
