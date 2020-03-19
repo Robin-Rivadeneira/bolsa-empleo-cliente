@@ -48,7 +48,7 @@
       </div>
     </div>
   </div>
-  <!--Ofertas de trabajo-->
+  <!--Postulantes-->
   <div class="col-9">
     <!--Buscador-->
     <div class="row">
@@ -115,11 +115,7 @@
     <div class="row" style="overflow: auto">
       <div class="col-lg-4 col-sm-12" *ngFor="let postulanteActual of postulants">
         <div class="single-special text-center mt-2">
-          <h4 class="text-uppercase" style="overflow:auto;height: 90px;"
-              *ngFor="let titulo of postulanteActual.academic_formations">
-            {{titulo.professional_degree}}
-          </h4>
-          <h4 *ngIf="!postulanteActual.academic_formations" class="text-uppercase" style="overflow:auto;height: 75px;">
+          <h4 class="text-uppercase" style="overflow:auto;height: 75px;">
             {{postulanteActual.professional_degree}}
           </h4>
           <p><b>Mi Perfil</b></p>

@@ -7,6 +7,7 @@ import {UserService} from '../../services/user.service';
 import {Company} from '../../models/company';
 import {User} from '../../models/user';
 import {Professional} from '../../models/professional';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-persona',
@@ -14,6 +15,7 @@ import {Professional} from '../../models/professional';
   styleUrls: ['./persona.component.css']
 })
 export class PersonaComponent implements OnInit {
+  fechaNacimientoMaxima: string;
   professional: Professional;
   user: User;
   password: string;
@@ -28,7 +30,8 @@ export class PersonaComponent implements OnInit {
 
   constructor(
     private registerService: RegisterService,
-    private _router: Router) {
+    private _router: Router,
+    private datePipe: DatePipe) {
   }
 
   ngOnInit() {
@@ -42,6 +45,7 @@ export class PersonaComponent implements OnInit {
     this.nacionalidades = catalogos.nacionalidades;
     this.estadosCiviles = catalogos.estadosCiviles;
     this.sexos = catalogos.sexos;
+    this.validarFechaMaximaNacimiento();
   }
 
   validarClave(): boolean {
@@ -95,20 +99,6 @@ export class PersonaComponent implements OnInit {
 
   }
 
-  validarFechaNacimiento() {
-    console.log(this.professional.birthdate);
-    const fechaActual = new Date();
-    if (this.professional.birthdate != null && this.professional.birthdate.toString() !== '') {
-      this.professional.birthdate = new Date(this.professional.birthdate.toString() + ' GMT-0500');
-      const resp = fechaActual.getFullYear() - this.professional.birthdate.getFullYear();
-      console.log(resp);
-      return fechaActual.getFullYear() - this.professional.birthdate.getFullYear() >= 18;
-    } else {
-      // this.selectedOffer.finish_date = null;
-      return false;
-    }
-  }
-
   validarFormulario(dataUser: User): string {
     let errores = '';
     if (this.professional.identity.length !== 10) {
@@ -133,10 +123,6 @@ export class PersonaComponent implements OnInit {
       const correo = dataUser.email.split('', 1);
       console.log(correo);
     }
-    if (this.validarFechaNacimiento()) {
-      errores += 'La fecha de nacimiento';
-    }
-
     return errores;
   }
 
@@ -211,5 +197,9 @@ export class PersonaComponent implements OnInit {
     return expreg.test(cadena.toUpperCase());
   }
 
-
+  validarFechaMaximaNacimiento() {
+    const fechaActual = new Date();
+    fechaActual.setFullYear(fechaActual.getFullYear() - 18);
+    this.fechaNacimientoMaxima = this.datePipe.transform(fechaActual, 'yyyy-MM-dd');
+  }
 }

@@ -41,7 +41,9 @@ export class PostulantesComponent implements OnInit {
     this.contarEmpresas();
     this.contarPostulantes();
     this.contarOfertas();
-    this.getProfessional();
+    if (this.userLogged && this.userLogged.role == '1') {
+      this.getProfessional();
+    }
   }
 
   contarEmpresas() {
@@ -67,34 +69,33 @@ export class PostulantesComponent implements OnInit {
   }
 
   getProfessional(): void {
-    if (this.userLogged) {
-      this.postulanteService.getProfessional(this.userLogged.id, this.userLogged.api_token).subscribe(
-        response => {
-          this.professional = response['professional'];
-          if (this.professional.about_me == null || this.professional.about_me === '' || this.professional.academic_formations) {
-            swal({
-              position: this.messages['getProfesional401']['position'],
-              type: this.messages['getProfesional401']['type'],
-              title: this.messages['getProfesional401']['title'],
-              text: this.messages['getProfesional401']['text'],
-              showConfirmButton: this.messages['getProfesional401']['showConfirmButton'],
-              backdrop: this.messages['getProfesional401']['backdrop']
-            });
-          }
-        },
-        error => {
-          if (error.status === 401) {
-            swal({
-              position: this.messages['createError401']['position'],
-              type: this.messages['createError401']['type'],
-              title: this.messages['createError401']['title'],
-              text: this.messages['createError401']['text'],
-              showConfirmButton: this.messages['createError401']['showConfirmButton'],
-              backdrop: this.messages['createError401']['backdrop']
-            });
-          }
-        });
-    }
+    this.postulanteService.getProfessional(this.userLogged.id, this.userLogged.api_token).subscribe(
+      response => {
+        this.professional = response['professional'];
+        if (this.professional.about_me == null || this.professional.about_me == '' || !this.professional.academic_formations) {
+          swal({
+            position: this.messages['getProfesional401']['position'],
+            type: this.messages['getProfesional401']['type'],
+            title: this.messages['getProfesional401']['title'],
+            text: this.messages['getProfesional401']['text'],
+            showConfirmButton: this.messages['getProfesional401']['showConfirmButton'],
+            backdrop: this.messages['getProfesional401']['backdrop']
+          });
+        }
+      },
+      error => {
+        if (error.status === 401) {
+          swal({
+            position: this.messages['createError401']['position'],
+            type: this.messages['createError401']['type'],
+            title: this.messages['createError401']['title'],
+            text: this.messages['createError401']['text'],
+            showConfirmButton: this.messages['createError401']['showConfirmButton'],
+            backdrop: this.messages['createError401']['backdrop']
+          });
+        }
+      });
+
   }
 
 }

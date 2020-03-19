@@ -14,8 +14,10 @@
                   <label for="identificacion" class="col-form-label">
                     <b class="text-danger">*</b> R.U.C.:
                   </label>
-                  <input class="form-control" name="identificacion" id="identificacion" required
-                         [(ngModel)]="company.identity" placeholder="Ej. 1234567890001">
+                  <input type="text" class="form-control" name="identificacion" id="identificacion" required
+                         (keypress)="validarSoloNumeros($event.key)" (paste)="false"
+                         [(ngModel)]="company.identity" placeholder="Ej. 1234567890001" maxlength="13"
+                  >
                 </div>
                 <div class="col-6">
                   <label for="naturaleza" class="col-form-label">
@@ -79,7 +81,7 @@
                 <b class="text-danger">*</b> Nombre Comercial:
               </label>
               <input type="text" class="form-control text-uppercase" name="nombreComercial" id="nombreComercial"
-                     [(ngModel)]="company.trade_name" required>
+                     maxlength="150" [(ngModel)]="company.trade_name" required>
             </div>
             <!-- Actividad Economica !-->
             <div class="form-group">
@@ -88,7 +90,7 @@
                 class="small">({{company.comercial_activity.length}}
                 /500)</span>
               </label>
-              <textarea rows="3" class="form-control text-uppercase" name="actividadEconomica" id="actividadEconomica"
+              <textarea rows="5" class="form-control text-uppercase" name="actividadEconomica" id="actividadEconomica"
                         maxlength="500" [(ngModel)]="company.comercial_activity" required></textarea>
             </div>
           </div>
@@ -101,9 +103,8 @@
                     Teléfono celular:
                   </label>
                   <input type="tel" class="form-control" name="telefonoCelular" id="telefonoCelular"
-                         (paste)="false"
                          [(ngModel)]="company.cell_phone" placeholder="Ej. 0987654321" maxlength="10"
-                         (keypress)="validarSoloNumeros($event.key)">
+                         (paste)="false" (keypress)="validarSoloNumeros($event.key)">
                 </div>
                 <div class="col-6">
                   <label for="telefonoFijo" class="col-form-label">
@@ -111,7 +112,7 @@
                   </label>
                   <input type="tel" class="form-control" name="telefonoFijo" id="telefonoFijo" (paste)="false"
                          [(ngModel)]="company.phone" placeholder="Ej. 0234567890" required maxlength="9"
-                         (keypress)="validarSoloNumeros($event)">
+                         (keypress)="validarSoloNumeros($event.key)">
                 </div>
               </div>
             </div>
@@ -119,10 +120,11 @@
             <div class="form-group">
               <label for="correoElectronico" class="col-form-label">
                 <b class="text-danger">*</b> Correo Electrónico:
+                <span class="small">({{user.email.length}}/50)</span>
               </label>
               <div class="input-group">
                 <input type="email" class="form-control text-lowercase" name="correoElectronico" id="correoElectronico"
-                       (keyup)="validarCorreoElectronico(user.email)"
+                       (keyup)="validarCorreoElectronico(user.email)" maxlength="50"
                        [(ngModel)]="user.email" placeholder="Ej. contacto@midominio.com" required>
                 <i class="fa fa-check btn-success btn-sm" aria-hidden="true"
                    *ngIf="correoValido"></i>
@@ -133,10 +135,10 @@
             <!-- Pagina Web !-->
             <div class="form-group">
               <label for="paginaWeb" class="col-form-label">
-                Página web:
+                Página web: <span class="small">({{company.web_page.length}}/50)</span>
               </label>
               <div class="input-group">
-                <input class="form-control text-lowercase" name="paginaWeb" id="paginaWeb"
+                <input class="form-control text-lowercase" name="paginaWeb" id="paginaWeb" maxlength="50"
                        [(ngModel)]="company.web_page" (keyup)="validarPaginaWeb(company.web_page)"
                        placeholder="www.midominio.com">
                 <i class="fa fa-check btn-success btn-sm" aria-hidden="true"

@@ -115,6 +115,7 @@
               <b class="text-danger">*</b> Fecha de Registro:
             </label>
             <input type="date" class="form-control" name="registrationDate" id="registrationDate"
+                   [max]="fechaNacimientoMaxima" (keydown)="false"
                    [(ngModel)]="selectedAcademicFormation.registration_date" required>
           </div>
           <div class="form-group" *ngIf="!selectedAcademicFormation.has_titling">

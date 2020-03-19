@@ -192,4 +192,9 @@ export class EmpresaComponent implements OnInit {
     const expreg = /^[0-9]*$/;
     return expreg.test(cadena);
   }
+
+  validarSoloLetrasConEspacio(cadena) {
+    const expreg = /^[A-Z_ ]+([A-Z]+)*$/;
+    return expreg.test(cadena.toUpperCase());
+  }
 }

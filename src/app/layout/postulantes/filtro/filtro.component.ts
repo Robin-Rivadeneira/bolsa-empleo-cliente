@@ -400,10 +400,8 @@ export class FiltroComponent implements OnInit {
 
     professionals.forEach(professional => {
       this.areas.forEach(area => {
-        if (professional.academic_formations.length > 0) {
-          if (professional.academic_formations[0]['career'] == area.campo_amplio) {
-            area.total = area.total + 1;
-          }
+        if (professional.career == area.campo_amplio) {
+          area.total = area.total + 1;
         }
       });
     });
@@ -415,17 +413,13 @@ export class FiltroComponent implements OnInit {
         areaEspecifica.total = 0;
       });
     });
-    let i = 0;
     professionals.forEach(professional => {
       this.areas.forEach(area => {
         area.campos_especificos.forEach(areaEspecifica => {
           // console.log(professional.academic_formations[0]['professional_degree']);
-          if (professional.academic_formations.length > 0) {
-            if (professional.academic_formations[0]['professional_degree'] == areaEspecifica.nombre) {
-              areaEspecifica.total = areaEspecifica.total + 1;
-            }
+          if (professional.professional_degree == areaEspecifica.nombre) {
+            areaEspecifica.total = areaEspecifica.total + 1;
           }
-
         });
       });
     });

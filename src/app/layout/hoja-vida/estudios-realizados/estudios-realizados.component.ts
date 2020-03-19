@@ -6,6 +6,7 @@ import swal from 'sweetalert2';
 import {User} from '../../../models/user';
 import {AcademicFormation} from '../../../models/academic-formation';
 import {ProfessionalService} from '../../../services/professional.service';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-estudios-realizados',
@@ -13,6 +14,7 @@ import {ProfessionalService} from '../../../services/professional.service';
   styleUrls: ['./estudios-realizados.component.css']
 })
 export class EstudiosRealizadosComponent implements OnInit {
+  fechaNacimientoMaxima: string;
   academicFormations: Array<AcademicFormation>;
   selectedAcademicFormation: AcademicFormation;
   actual_page: number;
@@ -26,7 +28,7 @@ export class EstudiosRealizadosComponent implements OnInit {
   instituciones: Array<any>;
   has_titling: boolean;
 
-  constructor(private modalService: NgbModal, public postulanteService: ProfessionalService) {
+  constructor(private modalService: NgbModal, public postulanteService: ProfessionalService, private datePipe: DatePipe) {
   }
 
   ngOnInit() {
@@ -41,6 +43,7 @@ export class EstudiosRealizadosComponent implements OnInit {
     this.messages = catalogos.messages;
     this.getAcademicFormations();
     this.filterProfessionalDegree();
+    this.validarFechaMaximaRegistro();
   }
 
   paginate(siguiente: boolean) {
@@ -261,5 +264,10 @@ export class EstudiosRealizadosComponent implements OnInit {
       this.selectedAcademicFormation.senescyt_code = '';
       this.selectedAcademicFormation.registration_date = null;
     }
+  }
+
+  validarFechaMaximaRegistro() {
+    const fechaActual = new Date();
+    this.fechaNacimientoMaxima = this.datePipe.transform(fechaActual, 'yyyy-MM-dd');
   }
 }

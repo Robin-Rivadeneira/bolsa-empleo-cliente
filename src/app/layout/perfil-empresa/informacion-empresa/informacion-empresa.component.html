@@ -37,8 +37,8 @@
                   <b class="text-danger">*</b> Indentificación:
                 </label>
                 <input type="text" class="form-control" id="identificacion" name="identificacion"
-                       placeholder="RUC O CÉDULA"
-                       [(ngModel)]="company.identity" required>
+                       (keypress)="validarSoloNumeros($event.key)" (paste)="false" maxlength="13"
+                       placeholder="Ej. 1234567890001" [(ngModel)]="company.identity" required>
               </div>
               <!--Nombre Comercial-->
               <div class="form-group">
@@ -46,7 +46,7 @@
                   <b class="text-danger">*</b> Nombre Comercial:
                 </label>
                 <input type="text" class="form-control text-uppercase" id="nombreComercial" name="nombreComercial"
-                       placeholder="NOMBRE COMERCIAL"
+                       placeholder="NOMBRE COMERCIAL" maxlength="150"
                        [(ngModel)]="company.trade_name" required>
               </div>
               <!--Naturaleza-->
@@ -81,9 +81,10 @@
             <div class="col-6">
               <!--Pagina Web-->
               <div class="form-group">
-                <label for="paginaWeb">Página Web:</label>
+                <label for="paginaWeb">Página Web: <span class="small">({{company.web_page.length}}/50)</span>
+                </label>
                 <input type="text" class="form-control text-lowercase" id="paginaWeb" name="paginaWeb"
-                       placeholder="Ej. www.midominio.com"
+                       placeholder="Ej. www.midominio.com" maxlength="50"
                        [(ngModel)]="company.web_page">
               </div>
               <!--Telefono Celular-->
@@ -92,8 +93,8 @@
                   <div class="col-6">
                     <label for="telefonoCelular">Teléfono Celular:</label>
                     <input type="text" class="form-control" id="telefonoCelular" name="telefonoCelular"
-                           placeholder="Ej. 0987654321" maxlength="10"
-                           [(ngModel)]="company.cell_phone">
+                           placeholder="Ej. 0987654321" maxlength="10" (paste)="false"
+                           (keypress)="validarSoloNumeros($event.key)" [(ngModel)]="company.cell_phone">
                   </div>
                   <div class="col-6">
                     <label for="telefonoFijo">
@@ -109,9 +110,10 @@
               <div class="form-group">
                 <label for="correoElectronico">
                   <b class="text-danger">*</b> Correo Electrónico:
+                  <span class="small">({{company.email.length}}/50)</span>
                 </label>
                 <input type="email" [(ngModel)]="company.email"
-                       class="form-control text-lowercase"
+                       class="form-control text-lowercase" maxlength="50"
                        id="correoElectronico" name="correoElectronico" placeholder="Ej. contacto@gmail.com" required>
               </div>
               <!--Direccion-->

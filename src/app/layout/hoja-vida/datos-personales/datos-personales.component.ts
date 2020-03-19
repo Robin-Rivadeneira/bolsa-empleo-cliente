@@ -4,6 +4,7 @@ import swal from 'sweetalert2';
 import {Professional} from '../../../models/professional';
 import {User} from '../../../models/user';
 import {ProfessionalService} from '../../../services/professional.service';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-datos-personales',
@@ -13,6 +14,7 @@ import {ProfessionalService} from '../../../services/professional.service';
 export class DatosPersonalesComponent implements OnInit {
   @ViewChild('fileInput') fileInput;
   srcFoto: string;
+  fechaNacimientoMaxima: string;
   nacionalidades: Array<any>;
   estadosCiviles: Array<any>;
   sexos: Array<any>;
@@ -21,7 +23,7 @@ export class DatosPersonalesComponent implements OnInit {
   messages: any;
   totalCaracteresAboutMe: string;
 
-  constructor(public postulanteService: ProfessionalService) {
+  constructor(public postulanteService: ProfessionalService, private datePipe: DatePipe) {
   }
 
   ngOnInit() {
@@ -32,6 +34,7 @@ export class DatosPersonalesComponent implements OnInit {
     this.estadosCiviles = catalogos.estadosCiviles;
     this.sexos = catalogos.sexos;
     this.getProfessional();
+    this.validarFechaMaximaNacimiento();
   }
 
   updateProfessional(): void {
@@ -81,8 +84,19 @@ export class DatosPersonalesComponent implements OnInit {
       });
   }
 
-  validarLongitudTexto() {
+  validarSoloNumeros(cadena) {
+    const expreg = /^[0-9]*$/;
+    return expreg.test(cadena);
+  }
 
-    return this.professional.about_me.length < 270;
+  validarSoloLetrasConEspacio(cadena) {
+    const expreg = /^[A-Z_ ]+([A-Z]+)*$/;
+    return expreg.test(cadena.toUpperCase());
+  }
+
+  validarFechaMaximaNacimiento() {
+    const fechaActual = new Date();
+    fechaActual.setFullYear(fechaActual.getFullYear() - 18);
+    this.fechaNacimientoMaxima = this.datePipe.transform(fechaActual, 'yyyy-MM-dd');
   }
 }

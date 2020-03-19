@@ -29,7 +29,7 @@ export class HojaVidaComponent implements OnInit {
     this.postulanteService.getProfessional(this.userLogged.id, this.userLogged.api_token).subscribe(
       response => {
         this.professional = response['professional'];
-        if (this.professional.about_me == null || this.professional.about_me === '' || this.professional.academic_formations) {
+        if (this.professional.about_me == null || this.professional.about_me === '' || !this.professional.academic_formations) {
           swal({
             position: this.messages['getProfesional401']['position'],
             type: this.messages['getProfesional401']['type'],

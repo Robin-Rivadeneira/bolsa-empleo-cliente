@@ -17,6 +17,8 @@ export class Professional {
   state: string;
   academic_formations: Array<AcademicFormation>;
   academics_formations: Array<AcademicFormation>;
+  professional_degree: string;
+  career: string;
 
   constructor() {
     // this.academic_formations = new AcademicFormation();
@@ -25,6 +27,7 @@ export class Professional {
     this.identity = '';
     this.first_name = '';
     this.last_name = '';
+    this.email = '';
     this.nationality = '';
     this.birthdate = new Date();
     this.civil_state = '';

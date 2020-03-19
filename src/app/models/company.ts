@@ -23,5 +23,6 @@ export class Company {
     this.phone = '';
     this.address = '';
     this.avatar = '';
+    this.email = '';
   }
 }
