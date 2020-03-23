@@ -23,6 +23,7 @@ export class CapacitacionCursosComponent implements OnInit {
   userLogged: User;
   instituciones: Array<any>;
   tiposEvento: Array<any>;
+  fechaMinimaCurso: string;
 
   constructor(
     private modalService: NgbModal,
@@ -241,4 +242,10 @@ export class CapacitacionCursosComponent implements OnInit {
       }
     });
   }
+
+  validarSoloNumeros(cadena) {
+    const expreg = /^[0-9]*$/;
+    return expreg.test(cadena);
+  }
+
 }

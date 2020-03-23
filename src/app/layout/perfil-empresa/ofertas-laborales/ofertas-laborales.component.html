@@ -36,7 +36,7 @@
               <button type="button" class="btn btn-success"
                       (click)="openOfertaLaboral(modalOfertaLaboral,null,false)">
                 <i class="fa fa-plus" aria-hidden="true"></i>
-                Agregar
+                Añadir
               </button>
             </th>
           </tr>
@@ -113,7 +113,7 @@
                   <b class="text-danger">*</b> Código:
                 </label>
                 <input class="form-control text-uppercase" id="editCodigo" name="editCodigo"
-                       [(ngModel)]="selectedOffer.code"
+                       [(ngModel)]="selectedOffer.code" maxlength="100"
                        placeholder="Código de la oferta" required>
               </div>
 
@@ -173,8 +173,8 @@
                 <label for="editContacto" class="col-form-label">
                   <b class="text-danger">*</b> Contacto:
                 </label>
-                <input class="form-control text-uppercase" id="editContacto" name="editContacto"
-                       [(ngModel)]="selectedOffer.contact"
+                <input class="form-control text-uppercase" id="editContacto" name="editContacto" maxlength="100"
+                       [(ngModel)]="selectedOffer.contact" (keypress)="validarSoloLetrasConEspacio($event.key)"
                        placeholder="Nombres y Apellidos" required>
               </div>
 
@@ -194,7 +194,8 @@
                   <b class="text-danger">*</b> Teléfono Fijo:
                 </label>
                 <input type="text" class="form-control" id="editTelefonoFijo" name="editTelefonoFijo"
-                       [(ngModel)]="selectedOffer.phone" placeholder="Ej. 023545432" required>
+                       (keypress)="validarSoloNumeros($event.key)"
+                       maxlength="9" [(ngModel)]="selectedOffer.phone" placeholder="Ej. 023545432" required>
               </div>
 
               <!-- Telefono Celular !-->
@@ -203,7 +204,8 @@
                   Teléfono Celular:
                 </label>
                 <input type="text" class="form-control" id="editTelefonoCelular" name="editTelefonoCelular"
-                       [(ngModel)]="selectedOffer.cell_phone" placeholder="Ej. 0987654321">
+                       (keypress)="validarSoloNumeros($event.key)"
+                       maxlength="10" [(ngModel)]="selectedOffer.cell_phone" placeholder="Ej. 0987654321">
               </div>
 
               <!-- Tipo Contrato !-->
@@ -236,7 +238,7 @@
                   <b class="text-danger">*</b> Cargo:
                 </label>
                 <input class="form-control text-uppercase" name="editCargo" id="editCargo"
-                       [(ngModel)]="selectedOffer.position"
+                       [(ngModel)]="selectedOffer.position" maxlength="50"
                        placeholder="Nomre del puesto de trabajo" required>
               </div>
               <!-- Campo Amplio !-->
@@ -339,10 +341,11 @@
               <!-- Numero de Puestos !-->
               <div class="form-group ">
                 <label for="numeroPuestos" class="col-form-label">
-                  <b class="text-danger">*</b> Puestos:
+                  <b class="text-danger">*</b> Número de Vacantes:
                 </label>
-                <input type="number" min="1" class="form-control" id="numeroPuestos" name="numeroPuestos"
-                       [(ngModel)]="selectedOffer.number_jobs"
+                <input type="text" class="form-control" id="numeroPuestos" name="numeroPuestos"
+                       [(ngModel)]="selectedOffer.number_jobs" maxlength="3"
+                       (keypress)="validarSoloNumeros($event.key)"
                        placeholder="# DE PUESTOS DE TRABAJO" required>
               </div>
             </div>
@@ -353,18 +356,20 @@
               <div class="form-group ">
                 <label for="actividades" class="col-form-label">
                   <b class="text-danger">*</b> Actividades:
+                  <span class="small">({{selectedOffer.activities.length}}/500)</span>
                 </label>
                 <textarea class="form-control text-uppercase" rows="5" id="actividades" name="actividades"
-                          [(ngModel)]="selectedOffer.activities"
+                          [(ngModel)]="selectedOffer.activities" maxlength="500"
                           placeholder="ACTIVIDADES QUE VA A REALIZAR EN EL PUESTO DE TRABAJO" required></textarea>
               </div>
               <!-- Informacion Adicional !-->
               <div class="form-group ">
                 <label for="informacionAdicional" class="col-form-label">
                   Información Adicional:
+                  <span class="small">({{selectedOffer.aditional_information.length}}/500)</span>
                 </label>
                 <textarea class="form-control text-uppercase" rows="5" id="informacionAdicional"
-                          name="informacionAdicional"
+                          name="informacionAdicional" maxlength="500"
                           [(ngModel)]="selectedOffer.aditional_information"
                           placeholder="Información Adicional"></textarea>
               </div>

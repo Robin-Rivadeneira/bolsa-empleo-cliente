@@ -257,4 +257,9 @@ export class ExperienciaProfesionalComponent implements OnInit {
       this.selectedProfessionalExperience.reason_leave = '';
     }
   }
+
+  validarSoloLetrasConEspacio(cadena) {
+    const expreg = /^[A-Z_ ]+([A-Z]+)*$/;
+    return expreg.test(cadena.toUpperCase());
+  }
 }

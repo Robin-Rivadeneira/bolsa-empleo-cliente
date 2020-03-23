@@ -74,7 +74,8 @@
             <label>
               <b class="text-danger">*</b> Institución:
             </label>
-            <input type="text" [(ngModel)]="selectedProfessionalReference.institution" class="form-control text-uppercase"
+            <input type="text" [(ngModel)]="selectedProfessionalReference.institution"
+                   class="form-control text-uppercase" maxlength="50"
                    id="institution" name="institution" placeholder="Nombre de la Institución" required>
           </div>
           <div class="form-group">
@@ -82,21 +83,23 @@
               <b class="text-danger">*</b> Cargo:
             </label>
             <input type="text" [(ngModel)]="selectedProfessionalReference.position" class="form-control text-uppercase"
-                   id="position" name="position" placeholder="Cargo" required>
+                   maxlength="50" id="position" name="position" placeholder="Cargo" required>
           </div>
           <div class="form-group">
             <label>
               <b class="text-danger">*</b> Apellidos y Nombres del Contacto:
             </label>
             <input type="text" [(ngModel)]="selectedProfessionalReference.contact" class="form-control text-uppercase"
-                   id="contact" name="contact" placeholder="Apellidos y Nombres" required>
+                   maxlength="100" (keypress)="validarSoloLetrasConEspacio($event.key)" id="contact" name="contact"
+                   placeholder="Apellidos y Nombres" required>
           </div>
           <div class="form-group">
             <label>
               <b class="text-danger">*</b> Teléfono del Contacto:
             </label>
-            <input type="text" [(ngModel)]="selectedProfessionalReference.phone" class="form-control"
-                   id="phone" name="phone" placeholder="Número de teléfono" required>
+            <input type="text" [(ngModel)]="selectedProfessionalReference.phone" class="form-control" maxlength="10"
+                   (keypress)="validarSoloNumeros($event.key)" id="phone" name="phone"
+                   placeholder="Número de teléfono convencional o celular" required>
           </div>
         </div>
       </div>
@@ -107,10 +110,12 @@
         {{messages['requiredFields']['text']}}
       </h6>
       <button class="btn btn-success" (click)="c('save')" [disabled]="formCtrl.form.invalid">
-        <span class="{{messages['saveConfirmationDialog']['iconOk']}}"></span>&nbsp;{{messages['saveConfirmationDialog']['ok']}}
+        <span
+          class="{{messages['saveConfirmationDialog']['iconOk']}}"></span>&nbsp;{{messages['saveConfirmationDialog']['ok']}}
       </button>
       <button class="btn btn-danger" (click)="c('close')">
-        <span class="{{messages['saveConfirmationDialog']['iconCancel']}}"></span>&nbsp;{{messages['saveConfirmationDialog']['cancel']}}
+        <span
+          class="{{messages['saveConfirmationDialog']['iconCancel']}}"></span>&nbsp;{{messages['saveConfirmationDialog']['cancel']}}
       </button>
     </div>
   </form>

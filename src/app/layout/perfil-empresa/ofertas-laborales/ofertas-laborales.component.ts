@@ -66,7 +66,7 @@ export class OfertasLaboralesComponent implements OnInit {
       this.filtrarCamposEspecificos(offer);
       this.filtrarCantones(offer);
     } else {
-      this.selectedOffer = new Offer();
+      // this.selectedOffer = new Offer();
       this.calculateFinishDate();
     }
 
@@ -438,5 +438,15 @@ export class OfertasLaboralesComponent implements OnInit {
     } else {
       this.selectedOffer.finish_date = null;
     }
+  }
+
+  validarSoloLetrasConEspacio(cadena) {
+    const expreg = /^[A-Z_ ]+([A-Z]+)*$/;
+    return expreg.test(cadena.toUpperCase());
+  }
+
+  validarSoloNumeros(cadena) {
+    const expreg = /^[0-9]*$/;
+    return expreg.test(cadena);
   }
 }

@@ -46,8 +46,7 @@
                   <b class="text-danger">*</b> Nombre Comercial:
                 </label>
                 <input type="text" class="form-control text-uppercase" id="nombreComercial" name="nombreComercial"
-                       placeholder="NOMBRE COMERCIAL" maxlength="150"
-                       [(ngModel)]="company.trade_name" required>
+                       placeholder="NOMBRE COMERCIAL" maxlength="150" [(ngModel)]="company.trade_name" required>
               </div>
               <!--Naturaleza-->
               <div class="form-group">
@@ -101,7 +100,7 @@
                       <b class="text-danger">*</b> Teléfono Fijo:
                     </label>
                     <input type="text" class="form-control" id="telefonoFijo" name="telefonoFijo"
-                           placeholder="Ej. 0234567890" maxlength="9"
+                           placeholder="Ej. 0234567890" maxlength="9" (keypress)="validarSoloNumeros($event.key)"
                            [(ngModel)]="company.phone" required>
                   </div>
                 </div>
