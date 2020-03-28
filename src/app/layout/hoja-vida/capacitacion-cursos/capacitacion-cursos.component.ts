@@ -247,5 +247,4 @@ export class CapacitacionCursosComponent implements OnInit {
     const expreg = /^[0-9]*$/;
     return expreg.test(cadena);
   }
-
 }
